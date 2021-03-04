@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace VodakomBlue.Repositories
 {
-    public interface IHomeInternetService
+    public interface IHomeInternetServiceRepository
     {
         Task<IEnumerable<HomeInternetService>> GetAllServiceAsync(int userId);
         Task AddServiceAsync(HomeInternetService newService);
