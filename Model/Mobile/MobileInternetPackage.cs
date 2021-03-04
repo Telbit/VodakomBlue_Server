@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,6 +21,13 @@ namespace VodakomBlue.Model.Mobile
 
         [Required(ErrorMessage = "Price is required")]
         public decimal Price { get; set; }
+
+        [Required(ErrorMessage = "Start time is required")]
+        public DateTime StartDate { get; set; }
+
+        [ForeignKey("Id")]
+        public MobileService MobileService { get; set; }
+        
 
 
     }

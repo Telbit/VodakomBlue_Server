@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace VodakomBlue.Model
+namespace VodakomBlue.Model.Mobile
 {
     public class MobilePhonePackage
     {
@@ -33,6 +34,11 @@ namespace VodakomBlue.Model
         [Required(ErrorMessage = "OutsideNetwork is required")]
         public int OutsideNetwork { get; set; }
 
+        [Required(ErrorMessage = "Start Date is required")]
+        public DateTime StartDate { get; set; }
+
+        [ForeignKey("Id")]
+        public MobileService MobileService { get; set; }
         
     }
 }
