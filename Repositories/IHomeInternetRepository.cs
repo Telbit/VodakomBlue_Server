@@ -8,7 +8,7 @@ namespace VodakomBlue.Repositories
     public interface IHomeInternetRepository
     {
         Task<HomeInternet> GetHomeInternetAsync(int homeInternetId);
-        Task GetAllHomeInternetAsync();
+        Task<IEnumerable<HomeInternet>> GetAllHomeInternetAsync();
         Task AddHomeInternetAsync(HomeInternet newHomeInternet);
         Task DeleteHomeInternetAsync(int homeInternetId);
     }
