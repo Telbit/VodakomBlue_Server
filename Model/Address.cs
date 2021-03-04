@@ -8,6 +8,9 @@ namespace VodakomBlue.Model
 {
     public class Address
     {
+        [Key]
+        public int Id { get; }
+
         [MaxLength(4)]
         [Required(ErrorMessage = "Zip is required")]
         public int ZipCode { get; set; }

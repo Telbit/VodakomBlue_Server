@@ -9,7 +9,7 @@ namespace VodakomBlue.Model
     public class User
     {
         [Key]
-        public int Id { get; set; }
+        public int Id { get; }
 
         [Required(ErrorMessage = "First name is required")]
         [MaxLength(30)]
@@ -37,7 +37,10 @@ namespace VodakomBlue.Model
         [Required(ErrorMessage = "Birth date is required")]
         public DateTime BirthDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Birth date is required")]
+        [MaxLength(12), MinLength(11)]
         public string ContactPhoneNumber { get; set; }
+
+        public List<Contract> Contracts { get; set; }
     }
 }
