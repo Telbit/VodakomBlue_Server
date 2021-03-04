@@ -10,7 +10,7 @@ namespace VodakomBlue.Model.Mobile
     public class MobileService
     {
         [Key]
-        public int Id { get; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Phone number is required")]
         [MaxLength(12)]

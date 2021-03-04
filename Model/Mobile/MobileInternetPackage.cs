@@ -10,7 +10,7 @@ namespace VodakomBlue.Model.Mobile
     public class MobileInternetPackage
     {
         [Key]
-        public int Id { get; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         [MaxLength(50)]
