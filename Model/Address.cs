@@ -23,7 +23,13 @@ namespace VodakomBlue.Model
         [Required(ErrorMessage = "Address is required")]
         public string StreetAddress { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "IsBillingAddress is required")]
         public bool IsBillingAddress { get; set; }
+
+        [Required(ErrorMessage = "IsHomeAddress is required")]
+        public bool IsHomeAddress { get; set; }
+
+        [Required(ErrorMessage = "User is required")]
+        public User User { get; set; }
     }
 }
