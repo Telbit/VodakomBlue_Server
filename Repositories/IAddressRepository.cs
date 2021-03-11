@@ -10,7 +10,7 @@ namespace VodakomBlue.Repositories
     {
         Task<IEnumerable<Address>> GetServiceAsync(int userId);
         Task AddAddressAsync(Address newAddress);
-        Task UpdateAddressAsync(Address address);
-        Task DeleteAddressAsync(int serviceId);
+        void UpdateAddress(Address address);
+        void DeleteAddress(int serviceId);
     }
 }

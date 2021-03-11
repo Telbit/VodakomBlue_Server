@@ -11,7 +11,7 @@ namespace VodakomBlue.Repositories
     {
         Task<IEnumerable<HomePhoneService>> GetAllServiceAsync(int userId);
         Task AddServiceAsync(HomePhoneService newService);
-        Task UpdateServiceAsync(HomePhoneService homeService);
-        Task DeleteServiceAsync(int serviceId);
+        void UpdateService(HomePhoneService homeService);
+        void DeleteService(int serviceId);
     }
 }

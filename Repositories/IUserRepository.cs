@@ -13,8 +13,8 @@ namespace VodakomBlue.Repositories
         Task<User> GetUserAsync(string phoneNumber);
         Task<User> GetUserAsync(string idCard, string fullName);
         Task<User> GetUserAsync(string fullName,  Address clientAddress, DateTime birthDate,  string mothersName);
-        Task DeleteUserAsync(int userId);
-        Task<User> UpdateUserAsync(User user);
+        void DeleteUser(int userId);
+        void UpdateUser(User user);
         Task AddUserAsync(User newUser);
 
 

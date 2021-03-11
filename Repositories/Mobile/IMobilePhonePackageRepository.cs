@@ -12,6 +12,6 @@ namespace VodakomBlue.Repositories
         Task<MobilePhonePackage> GetPackageAsync(int packageId);
         Task<IEnumerable<MobilePhonePackage>> GetAllPackageAsync();
         Task AddPackageAsync(MobilePhonePackage newPackage);
-        Task DeletePackageAsync(int packageId);
+        void DeletePackage(int packageId);
     }
 }
