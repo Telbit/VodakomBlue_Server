@@ -10,17 +10,19 @@ namespace VodakomBlue.Repositories.Implementations
     public class MobileInternetPackageRepository : IMobileInternetPackageRepository
     {
         private readonly AppDbContext dbContext;
+        
 
         public MobileInternetPackageRepository(AppDbContext context)
         {
             dbContext = context;
         }
+
         public Task AddPackageAsync(MobileInternetPackage newPackage)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeletePackageAsync(int packageId)
+        public void DeletePackage(int packageId)
         {
             throw new NotImplementedException();
         }

@@ -15,12 +15,13 @@ namespace VodakomBlue.Repositories.Implementations
         {
             dbContext = context;
         }
+
         public Task AddHomeInternetAsync(HomeInternet newHomeInternet)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteHomeInternetAsync(int homeInternetId)
+        public void DeleteHomeInternet(int homeInternetId)
         {
             throw new NotImplementedException();
         }

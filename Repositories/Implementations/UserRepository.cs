@@ -14,12 +14,13 @@ namespace VodakomBlue.Repositories.Implementations
         {
             dbContext = context;
         }
+
         public Task AddUserAsync(User newUser)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteUserAsync(int userId)
+        public void DeleteUser(int userId)
         {
             throw new NotImplementedException();
         }
@@ -44,7 +45,7 @@ namespace VodakomBlue.Repositories.Implementations
             throw new NotImplementedException();
         }
 
-        public Task<User> UpdateUserAsync(User user)
+        public void UpdateUser(User user)
         {
             throw new NotImplementedException();
         }

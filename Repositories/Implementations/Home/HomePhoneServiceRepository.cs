@@ -15,12 +15,13 @@ namespace VodakomBlue.Repositories.Implementations
         {
             dbContext = context;
         }
+
         public Task AddServiceAsync(HomePhoneService newService)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteServiceAsync(int serviceId)
+        public void DeleteService(int serviceId)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +31,7 @@ namespace VodakomBlue.Repositories.Implementations
             throw new NotImplementedException();
         }
 
-        public Task UpdateServiceAsync(HomePhoneService homeService)
+        public void UpdateService(HomePhoneService homeService)
         {
             throw new NotImplementedException();
         }

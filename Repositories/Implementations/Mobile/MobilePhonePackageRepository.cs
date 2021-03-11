@@ -15,12 +15,13 @@ namespace VodakomBlue.Repositories.Implementations
         {
             dbContext = context;
         }
+
         public Task AddPackageAsync(MobilePhonePackage newPackage)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeletePackageAsync(int packageId)
+        public void DeletePackage(int packageId)
         {
             throw new NotImplementedException();
         }

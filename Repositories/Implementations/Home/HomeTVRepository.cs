@@ -15,12 +15,13 @@ namespace VodakomBlue.Repositories.Implementations
         {
             dbContext = context;
         }
+
         public Task AddHomeTvAsync(HomeTV newHomeTv)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteHomeTv(int homeTvId)
+        public void DeleteHomeTv(int homeTvId)
         {
             throw new NotImplementedException();
         }

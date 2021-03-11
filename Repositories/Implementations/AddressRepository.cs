@@ -16,12 +16,13 @@ namespace VodakomBlue.Repositories.Implementations
         {
             dbContext = context;
         }
+
         public Task AddAddressAsync(Address newAddress)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAddressAsync(int serviceId)
+        public void DeleteAddress(int serviceId)
         {
             throw new NotImplementedException();
         }
@@ -31,7 +32,7 @@ namespace VodakomBlue.Repositories.Implementations
             throw new NotImplementedException();
         }
 
-        public Task UpdateAddressAsync(Address address)
+        public void UpdateAddress(Address address)
         {
             throw new NotImplementedException();
         }
