@@ -6,8 +6,16 @@ using VodakomBlue.Model;
 
 namespace VodakomBlue.Repositories.Implementations
 {
+
+    
     public class AddressRepository : IAddressRepository
     {
+        private readonly AppDbContext dbContext;
+
+        public AddressRepository(AppDbContext context)
+        {
+            dbContext = context;
+        }
         public Task AddAddressAsync(Address newAddress)
         {
             throw new NotImplementedException();

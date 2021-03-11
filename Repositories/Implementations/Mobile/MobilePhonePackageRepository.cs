@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Mobile;
+using VodakomBlue.Model;
 
 namespace VodakomBlue.Repositories.Implementations
 {
     public class MobilePhonePackageRepository : IMobilePhonePackageRepository
     {
+        private readonly AppDbContext dbContext;
+
+        public MobilePhonePackageRepository(AppDbContext context)
+        {
+            dbContext = context;
+        }
         public Task AddPackageAsync(MobilePhonePackage newPackage)
         {
             throw new NotImplementedException();

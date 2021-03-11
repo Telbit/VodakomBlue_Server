@@ -8,6 +8,12 @@ namespace VodakomBlue.Repositories.Implementations
 {
     public class UserRepository : IUserRepository
     {
+        private readonly AppDbContext dbContext;
+
+        public UserRepository(AppDbContext context)
+        {
+            dbContext = context;
+        }
         public Task AddUserAsync(User newUser)
         {
             throw new NotImplementedException();

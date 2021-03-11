@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Home;
+using VodakomBlue.Model;
 
 namespace VodakomBlue.Repositories.Implementations
 {
     public class HomeTVRepository : IHomeTVRepository
     {
+        private readonly AppDbContext dbContext;
+
+        public HomeTVRepository(AppDbContext context)
+        {
+            dbContext = context;
+        }
         public Task AddHomeTvAsync(HomeTV newHomeTv)
         {
             throw new NotImplementedException();

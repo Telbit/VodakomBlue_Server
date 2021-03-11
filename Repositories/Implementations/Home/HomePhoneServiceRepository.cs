@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Home;
+using VodakomBlue.Model;
 
 namespace VodakomBlue.Repositories.Implementations
 {
     public class HomePhoneServiceRepository : IHomePhoneServiceRepository
     {
+        private readonly AppDbContext dbContext;
+
+        public HomePhoneServiceRepository(AppDbContext context)
+        {
+            dbContext = context;
+        }
         public Task AddServiceAsync(HomePhoneService newService)
         {
             throw new NotImplementedException();

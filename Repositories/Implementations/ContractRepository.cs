@@ -8,6 +8,12 @@ namespace VodakomBlue.Repositories.Implementations
 {
     public class ContractRepository : IContractRepository
     {
+        private readonly AppDbContext dbContext;
+
+        public ContractRepository(AppDbContext context)
+        {
+            dbContext = context;
+        }
         public Task AddContractAsync(int userId)
         {
             throw new NotImplementedException();
