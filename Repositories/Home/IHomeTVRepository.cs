@@ -7,11 +7,11 @@ using VodakomBlue.Model.Home;
 
 namespace VodakomBlue.Repositories
 {
-    public interface IHomeTvRepository
+    public interface IHomeTVRepository
     {
-        Task<HomeTv> GetHomeTvAsync(int homeTvId);
-        Task<IEnumerable<HomeTv>> GetAllHomeTvASync();
-        Task AddHomeTvAsync(HomeTv newHomeTv);
+        Task<HomeTV> GetHomeTvAsync(int homeTvId);
+        Task<IEnumerable<HomeTV>> GetAllHomeTvASync();
+        Task AddHomeTvAsync(HomeTV newHomeTv);
         Task DeleteHomeTv(int homeTvId);
     }
 }
