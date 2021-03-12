@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Mobile;
 using VodakomBlue.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace VodakomBlue.Repositories.Implementations
 {
@@ -16,24 +17,30 @@ namespace VodakomBlue.Repositories.Implementations
             dbContext = context;
         }
 
-        public Task AddServiceAsync(MobileService newService)
+        public async Task AddServiceAsync(MobileService newService)
         {
-            throw new NotImplementedException();
+            await dbContext.MobileServices.AddAsync(newService);
+            await dbContext.SaveChangesAsync();
         }
 
-        public void DeleteService(int serviceId)
+        public void DeleteService(int serviceId, int userId)
         {
-            throw new NotImplementedException();
+            MobileService mobileService = 
+                GetServicesAsync(userId).Result.FirstOrDefault(service => service.Id == serviceId);
+            dbContext.MobileServices.Remove(mobileService);
+            dbContext.SaveChanges();
         }
 
-        public Task<IEnumerable<MobileService>> GetServiceAsync(int userId)
+        public async Task<IEnumerable<MobileService>> GetServicesAsync(int userId)
         {
-            throw new NotImplementedException();
+            return await dbContext.MobileServices.Where(service => service.UserId == userId).ToListAsync();
         }
 
         public void UpdateService(MobileService homeService)
         {
-            throw new NotImplementedException();
+            var serviceToUpdate = dbContext.MobileServices.Attach(homeService);
+            serviceToUpdate.State = EntityState.Modified;
+            dbContext.SaveChanges();
         }
     }
 }
