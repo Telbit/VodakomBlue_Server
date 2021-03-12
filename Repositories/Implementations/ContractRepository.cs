@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace VodakomBlue.Repositories.Implementations
 {
@@ -14,14 +15,15 @@ namespace VodakomBlue.Repositories.Implementations
         {
             dbContext = context;
         }
-        public Task AddContractAsync(int userId)
+        public async Task AddContractAsync(Contract contract)
         {
-            throw new NotImplementedException();
+            await dbContext.Contracts.AddAsync(contract);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<Contract> GetContractAsync(int userId)
+        public async Task<Contract> GetContractAsync(int userId)
         {
-            throw new NotImplementedException();
+            return await dbContext.Contracts.FirstOrDefaultAsync(contract => contract.UserId == userId);
         }
     }
 }
