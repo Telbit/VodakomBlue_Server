@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Mobile;
 using VodakomBlue.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace VodakomBlue.Repositories.Implementations
 {
@@ -16,24 +17,27 @@ namespace VodakomBlue.Repositories.Implementations
             dbContext = context;
         }
 
-        public Task AddPackageAsync(MobilePhonePackage newPackage)
+        public async Task AddPackageAsync(MobilePhonePackage newPackage)
         {
-            throw new NotImplementedException();
+            await dbContext.MobilePhonePackages.AddAsync(newPackage);
+            await dbContext.SaveChangesAsync();
         }
 
         public void DeletePackage(int packageId)
         {
-            throw new NotImplementedException();
+            MobilePhonePackage mobilePhonePackage = GetPackageAsync(packageId).Result;
+            dbContext.Remove(mobilePhonePackage);
+            dbContext.SaveChanges();
         }
 
-        public Task<IEnumerable<MobilePhonePackage>> GetAllPackageAsync()
+        public async Task<IEnumerable<MobilePhonePackage>> GetAllPackageAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.MobilePhonePackages.ToListAsync();
         }
 
-        public Task<MobilePhonePackage> GetPackageAsync(int packageId)
+        public async Task<MobilePhonePackage> GetPackageAsync(int packageId)
         {
-            throw new NotImplementedException();
+            return await dbContext.MobilePhonePackages.FindAsync(packageId);
         }
     }
 }
