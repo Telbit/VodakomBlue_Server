@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model;
@@ -15,39 +16,46 @@ namespace VodakomBlue.Repositories.Implementations
             dbContext = context;
         }
 
-        public Task AddUserAsync(User newUser)
+        public async Task AddUserAsync(User newUser)
         {
-            throw new NotImplementedException();
+            await dbContext.Users.AddAsync(newUser);
+            await dbContext.SaveChangesAsync();
         }
 
         public void DeleteUser(int userId)
         {
-            throw new NotImplementedException();
+            User user = GetUserAsync(userId).Result;
+            dbContext.Users.Remove(user);
+            dbContext.SaveChanges();
         }
 
-        public Task<User> GetUserAsync(int userId)
+        public async Task<User> GetUserAsync(int userId)
         {
-            throw new NotImplementedException();
+            return await dbContext.Users.FindAsync(userId);
         }
 
-        public Task<User> GetUserAsync(string phoneNumber)
+        public User GetUser(string phoneNumber)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.FirstOrDefault(user => user.ContactPhoneNumber == phoneNumber);
         }
 
-        public Task<User> GetUserAsync(string idCard, string fullName)
+        public User GetUser(string idCard, string firstName, string lastName)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.FirstOrDefault(user => user.IdCardNumber == idCard
+            && user.FirstName == firstName && user.LastName == lastName);
         }
 
-        public Task<User> GetUserAsync(string fullName, Address clientAddress, DateTime birthDate, string mothersName)
+        public User GetUser(Address clientAddress, DateTime birthDate, string mothersName)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.FirstOrDefault(user => user.Adresses.Contains(clientAddress) &&
+            user.BirthDate == birthDate && user.MothersName == mothersName);
         }
 
         public void UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            var productToUpdate = dbContext.Attach(user);
+            productToUpdate.State = EntityState.Modified;
+            dbContext.SaveChanges();
         }
     }
 }
