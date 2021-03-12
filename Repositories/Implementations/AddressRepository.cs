@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace VodakomBlue.Repositories.Implementations
 {
@@ -17,24 +18,27 @@ namespace VodakomBlue.Repositories.Implementations
             dbContext = context;
         }
 
-        public Task AddAddressAsync(Address newAddress)
+        public async Task AddAddressAsync(Address newAddress)
+        {
+            await dbContext.Addresses.AddAsync(newAddress);
+            await dbContext.SaveChangesAsync();
+        }
+        
+        public void DeleteAddress(int addressId)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteAddress(int serviceId)
+        public async Task<IEnumerable<Address>> GetAddressesAsync(int userId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Address>> GetServiceAsync(int userId)
-        {
-            throw new NotImplementedException();
+            return await dbContext.Addresses.Where(address => address.User.Id == userId).ToListAsync();
         }
 
         public void UpdateAddress(Address address)
         {
-            throw new NotImplementedException();
+            var addressToUpdate = dbContext.Attach(address);
+            addressToUpdate.State = EntityState.Modified;
+            dbContext.SaveChanges();
         }
     }
 }
