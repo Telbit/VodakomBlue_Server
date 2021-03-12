@@ -10,6 +10,6 @@ namespace VodakomBlue.Repositories
     public interface IContractRepository
     {
         Task<Contract> GetContractAsync(int userId);
-        Task AddContractAsync(int userId);
+        Task AddContractAsync(Contract contract);
     }
 }
