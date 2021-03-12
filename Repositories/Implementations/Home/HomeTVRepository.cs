@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Home;
 using VodakomBlue.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace VodakomBlue.Repositories.Implementations
 {
@@ -16,24 +17,27 @@ namespace VodakomBlue.Repositories.Implementations
             dbContext = context;
         }
 
-        public Task AddHomeTvAsync(HomeTV newHomeTv)
+        public async Task AddHomeTvAsync(HomeTV newHomeTv)
         {
-            throw new NotImplementedException();
+            await dbContext.HomeTVs.AddAsync(newHomeTv);
+            await dbContext.SaveChangesAsync();
         }
 
         public void DeleteHomeTv(int homeTvId)
         {
-            throw new NotImplementedException();
+            HomeTV homeTV = GetHomeTvAsync(homeTvId).Result;
+            dbContext.Remove(homeTV);
+            dbContext.SaveChanges();
         }
 
-        public Task<IEnumerable<HomeTV>> GetAllHomeTvASync()
+        public async Task<IEnumerable<HomeTV>> GetAllHomeTvASync()
         {
-            throw new NotImplementedException();
+            return await dbContext.HomeTVs.ToListAsync();
         }
 
-        public Task<HomeTV> GetHomeTvAsync(int homeTvId)
+        public async Task<HomeTV> GetHomeTvAsync(int homeTvId)
         {
-            throw new NotImplementedException();
+            return await dbContext.HomeTVs.FindAsync(homeTvId);
         }
     }
 }
