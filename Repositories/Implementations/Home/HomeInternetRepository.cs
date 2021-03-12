@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Home;
 using VodakomBlue.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace VodakomBlue.Repositories.Implementations
 {
@@ -16,24 +17,27 @@ namespace VodakomBlue.Repositories.Implementations
             dbContext = context;
         }
 
-        public Task AddHomeInternetAsync(HomeInternet newHomeInternet)
+        public async Task AddHomeInternetAsync(HomeInternet newHomeInternet)
         {
-            throw new NotImplementedException();
+            await dbContext.HomeInternets.AddAsync(newHomeInternet);
+            await dbContext.SaveChangesAsync();
         }
 
         public void DeleteHomeInternet(int homeInternetId)
         {
-            throw new NotImplementedException();
+            HomeInternet homeInternet = GetHomeInternetAsync(homeInternetId).Result;
+            dbContext.Remove(homeInternet);
+            dbContext.SaveChanges();
         }
 
-        public Task<IEnumerable<HomeInternet>> GetAllHomeInternetAsync()
+        public async Task<IEnumerable<HomeInternet>> GetAllHomeInternetAsync()
         {
-            throw new NotImplementedException();
+            return await dbContext.HomeInternets.ToListAsync();
         }
 
-        public Task<HomeInternet> GetHomeInternetAsync(int homeInternetId)
+        public async Task<HomeInternet> GetHomeInternetAsync(int homeInternetId)
         {
-            throw new NotImplementedException();
+            return await dbContext.HomeInternets.FindAsync(homeInternetId);
         }
     }
 }
