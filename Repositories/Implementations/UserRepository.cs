@@ -34,20 +34,20 @@ namespace VodakomBlue.Repositories.Implementations
             return await dbContext.Users.FindAsync(userId);
         }
 
-        public User GetUser(string phoneNumber)
+        public async Task<User> GetUserAsync(string phoneNumber)
         {
-            return dbContext.Users.FirstOrDefault(user => user.ContactPhoneNumber == phoneNumber);
+            return await dbContext.Users.FirstOrDefaultAsync(user => user.ContactPhoneNumber == phoneNumber);
         }
 
-        public User GetUser(string idCard, string firstName, string lastName)
+        public async Task<User> GetUserAsync(string idCard, string firstName, string lastName)
         {
-            return dbContext.Users.FirstOrDefault(user => user.IdCardNumber == idCard
+            return await dbContext.Users.FirstOrDefaultAsync(user => user.IdCardNumber == idCard
             && user.FirstName == firstName && user.LastName == lastName);
         }
 
-        public User GetUser(Address clientAddress, DateTime birthDate, string mothersName)
+        public async Task<User> GetUserAsync(Address clientAddress, DateTime birthDate, string mothersName)
         {
-            return dbContext.Users.FirstOrDefault(user => user.Adresses.Contains(clientAddress) &&
+            return await dbContext.Users.FirstOrDefaultAsync(user => user.Adresses.Contains(clientAddress) &&
             user.BirthDate == birthDate && user.MothersName == mothersName);
         }
 
