@@ -26,12 +26,12 @@ namespace VodakomBlue.Repositories.Implementations
         public void DeleteService(int serviceId, int userId)
         {
             HomeInternetService homeInternetService =
-                GetAllServiceAsync(userId).Result.FirstOrDefault(service => service.Id == serviceId);
+                GetServicesAsync(userId).Result.FirstOrDefault(service => service.Id == serviceId);
             dbContext.Remove(homeInternetService);
             dbContext.SaveChanges();
         }
 
-        public async Task<IEnumerable<HomeInternetService>> GetAllServiceAsync(int userId)
+        public async Task<IEnumerable<HomeInternetService>> GetServicesAsync(int userId)
         {
             return await dbContext.HomeInternetServices.Where(service => service.User.Id == userId).ToListAsync();
         }
