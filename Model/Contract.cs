@@ -12,6 +12,9 @@ namespace VodakomBlue.Model
         [Key]
         public int Id { get; }
 
+        [Required(ErrorMessage = "Salesman is required")]
+        public Employee Employee { get; set; }
+
         [Required(ErrorMessage = "Customer is required")]
  
         public Customer Customer { get; set; }
@@ -21,5 +24,7 @@ namespace VodakomBlue.Model
 
         [Required(ErrorMessage = "End date is required")]
         public DateTime EndDate { get; set; }
+        [Required(ErrorMessage = "Atleast one service required")]
+        public List<Service> Services { get; set; }
     }
 }
