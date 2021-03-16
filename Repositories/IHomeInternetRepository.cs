@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VodakomBlue.Model.Home;
-
 
 namespace VodakomBlue.Repositories
 {
@@ -12,6 +10,6 @@ namespace VodakomBlue.Repositories
         Task<HomeInternet> GetHomeInternetAsync(int homeInternetId);
         Task<IEnumerable<HomeInternet>> GetAllHomeInternetAsync();
         Task AddHomeInternetAsync(HomeInternet newHomeInternet);
-        void DeleteHomeInternet(int homeInternetId);
+        Task DeleteHomeInternetAsync(int homeInternetId);
     }
 }
