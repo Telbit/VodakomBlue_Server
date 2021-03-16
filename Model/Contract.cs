@@ -10,10 +10,10 @@ namespace VodakomBlue.Model
     public class Contract
     {
         [Key]
-        public int Id { get; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Salesman is required")]
-        public Employee Employee { get; set; }
+        public Employee Salesman { get; set; }
 
         [Required(ErrorMessage = "Customer is required")]
  
