@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using VodakomBlue.Model.Home;
+using VodakomBlue.Model;
+using Microsoft.EntityFrameworkCore;
+
+namespace VodakomBlue.Repositories.Implementations
+{
+    public class HomeInternetServiceRepository : IHomeInternetServiceRepository
+    {
+        private readonly AppDbContext dbContext;
+
+        public HomeInternetServiceRepository(AppDbContext context)
+        {
+            dbContext = context;
+        }
+
+        public async Task AddServiceAsync(HomeInternetService newService)
+        {
+            await dbContext.HomeInternetServices.AddAsync(newService);
+            await dbContext.SaveChangesAsync();
+        }
+
+        public void DeleteService(int serviceId, int userId)
+        {
+            HomeInternetService homeInternetService =
+                GetServicesAsync(userId).Result.FirstOrDefault(service => service.Id == serviceId);
+            dbContext.Remove(homeInternetService);
+            dbContext.SaveChanges();
+        }
+
+        public async Task<IEnumerable<HomeInternetService>> GetServicesAsync(int userId)
+        {
+            return await dbContext.HomeInternetServices.Where(service => service.User.Id == userId).ToListAsync();
+        }
+
+        public void UpdateService(HomeInternetService homeService)
+        {
+            var homeServiceToUpdate = dbContext.Attach(homeService);
+            homeServiceToUpdate.State = EntityState.Modified;
+            dbContext.SaveChanges();
+        }
+    }
+}

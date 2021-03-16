@@ -7,18 +7,18 @@ namespace VodakomBlue.Model
 {
     public class AppDbContext : DbContext
     {
-        DbSet<Address> Addresses { get; set; }
-        DbSet<User> Users { get; set; }
-        DbSet<Contract> Contracts { get; set; }
-        DbSet<HomeInternet> HomeInternets { get; set; }
-        DbSet<HomeInternetService> HomeInternetServices { get; set; }
-        DbSet<HomePhone> HomePhones { get; set; }
-        DbSet<HomePhoneService> HomePhoneServices { get; set; }
-        DbSet<HomeTV> HomeTVs { get; set; }
-        DbSet<HomeTvService> HomeTvServices { get; set; }
-        DbSet<MobileInternetPackage> MobileInternetPackages { get; set; }
-        DbSet<MobilePhonePackage> MobilePhonePackages { get; set; }
-        DbSet<MobileService> MobileServices { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
+        public DbSet<HomeInternet> HomeInternets { get; set; }
+        public DbSet<HomeInternetService> HomeInternetServices { get; set; }
+        public DbSet<HomePhone> HomePhones { get; set; }
+        public DbSet<HomePhoneService> HomePhoneServices { get; set; }
+        public DbSet<HomeTV> HomeTVs { get; set; }
+        public DbSet<HomeTvService> HomeTvServices { get; set; }
+        public DbSet<MobileInternetPackage> MobileInternetPackages { get; set; }
+        public DbSet<MobilePhonePackage> MobilePhonePackages { get; set; }
+        public DbSet<MobileService> MobileServices { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> option) 
             : base(option)
