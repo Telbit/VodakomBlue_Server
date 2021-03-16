@@ -11,5 +11,6 @@ namespace VodakomBlue.Model
         [Required(ErrorMessage = "Adresses is required")]
         public List<Address> Adresses { get; set; }
         public List<Contract> Contracts { get; set; }
+        public List<Service> Services { get; set; }
     }
 }
