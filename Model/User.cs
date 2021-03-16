@@ -10,7 +10,7 @@ namespace VodakomBlue.Model
     public abstract class User
     {
         [Key]
-        public int Id { get; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "First name is required")]
         [MaxLength(30)]

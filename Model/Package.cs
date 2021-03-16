@@ -9,7 +9,7 @@ namespace VodakomBlue.Model
     public abstract class Package
     {
         [Key]
-        public int Id { get; }
+        public int Id { get; set; }
 
         [MaxLength(50)]
         [Required(ErrorMessage = "Name is Required")]
