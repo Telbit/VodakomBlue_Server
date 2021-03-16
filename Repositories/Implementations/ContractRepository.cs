@@ -21,9 +21,9 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<Contract> GetContractAsync(int userId)
+        public async Task<Contract> GetContractAsync(int customerId)
         {
-            return await dbContext.Contracts.FirstOrDefaultAsync(contract => contract.UserId == userId);
+            return await dbContext.Contracts.FirstOrDefaultAsync(contract => contract.Customer.Id == customerId);
         }
     }
 }

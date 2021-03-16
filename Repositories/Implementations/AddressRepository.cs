@@ -29,9 +29,9 @@ namespace VodakomBlue.Repositories.Implementations
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Address>> GetAddressesAsync(int userId)
+        public async Task<IEnumerable<Address>> GetAddressesAsync(int customerId)
         {
-            return await dbContext.Addresses.Where(address => address.User.Id == userId).ToListAsync();
+            return await dbContext.Addresses.Where(address => address.Customer.Id == customerId).ToListAsync();
         }
 
         public void UpdateAddress(Address address)

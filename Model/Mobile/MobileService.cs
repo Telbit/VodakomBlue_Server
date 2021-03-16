@@ -7,37 +7,22 @@ using System.Threading.Tasks;
 
 namespace VodakomBlue.Model.Mobile
 {
-    public class MobileService
+    public class MobileService : Service
     {
-        [Key]
-        public int Id { get; }
 
         [Required(ErrorMessage = "Phone number is required")]
         [MaxLength(12)]
         public string PhoneNumber { get; set; }
 
-        public int MobilePhonePackageId { get; set; }
-
-        [Required(ErrorMessage = "MobileInternet is required")]
-        public int MobileInternetPackageId { get; set; }
-
-        
-        [Required(ErrorMessage = "UserId is required")]
-        public int UserId { get; set; }
-
         [Required(ErrorMessage = "ContractId is required")]
         public int ContractId { get; set; }
 
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+        [Required(ErrorMessage = "CustomerID is required")]
+        public Customer Customer { get; set; }
 
-        [ForeignKey("ContractId")]
-        public Contract Contract { get; set; }
-
-        [ForeignKey("MobilePhonePackageId")]
         public MobilePhonePackage MobilePhonePackage { get; set; }
 
-        [ForeignKey("MobileInternetPackageId")]
+        [Required(ErrorMessage = "Mobile Internet Package is required")]
         public MobileInternetPackage MobileInternetPackage { get; set; }
 
     }

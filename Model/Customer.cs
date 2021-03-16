@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VodakomBlue.Model
 {
-    public class User
+    public class Customer
     {
         [Key]
         public int Id { get; }

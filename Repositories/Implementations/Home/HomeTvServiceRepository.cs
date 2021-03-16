@@ -23,18 +23,18 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public void DeleteService(int serviceId, int userId)
+        public void DeleteService(int serviceId, int customerId)
         {
             HomeService homeService = 
-                GetServicesAsync(userId).Result.FirstOrDefault(service => service.Id == serviceId);
+                GetServicesAsync(customerId).Result.FirstOrDefault(service => service.Id == serviceId);
             dbContext.Remove(homeService);
             dbContext.SaveChanges();
 
         }
 
-        public async Task<IEnumerable<HomeTvService>> GetServicesAsync(int userId)
+        public async Task<IEnumerable<HomeTvService>> GetServicesAsync(int customerId)
         {
-            return await dbContext.HomeTvServices.Where(service => service.User.Id == userId).ToListAsync();
+            return await dbContext.HomeTvServices.Where(service => service.Customer.Id == customerId).ToListAsync();
         }
 
         public void UpdateService(HomeTvService homeService)

@@ -8,7 +8,7 @@ namespace VodakomBlue.Model
     public class AppDbContext : DbContext
     {
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<HomeInternet> HomeInternets { get; set; }
         public DbSet<HomeInternetService> HomeInternetServices { get; set; }

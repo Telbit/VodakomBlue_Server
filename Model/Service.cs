@@ -12,7 +12,7 @@ namespace VodakomBlue.Model
         public int Id { get; set; }
 
         [Required(ErrorMessage = "User is required")]
-        public User User { get; set; }
+        public Customer Customer { get; set; }
 
         [Required(ErrorMessage = "Contract is required")]
         public Contract Contract { get; set; }

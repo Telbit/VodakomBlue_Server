@@ -9,9 +9,9 @@ namespace VodakomBlue.Repositories
 {
     public interface IMobileServiceRepository
     {
-        Task<IEnumerable<MobileService>> GetServicesAsync(int userId);
+        Task<IEnumerable<MobileService>> GetServicesAsync(int customerId);
         Task AddServiceAsync(MobileService newService);
         void UpdateService(MobileService homeService);
-        void DeleteService(int serviceId, int userId);
+        void DeleteService(int serviceId, int customerId);
     }
 }

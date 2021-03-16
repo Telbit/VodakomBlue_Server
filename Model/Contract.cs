@@ -12,11 +12,9 @@ namespace VodakomBlue.Model
         [Key]
         public int Id { get; }
 
-        [Required(ErrorMessage = "User id is required")]
-        public int UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+        [Required(ErrorMessage = "Customer is required")]
+ 
+        public Customer Customer { get; set; }
 
         [Required(ErrorMessage = "Start date is required")]
         public DateTime StartDate { get; set; }
