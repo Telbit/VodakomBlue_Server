@@ -2,10 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using VodakomBlue.Repositories;
+using VodakomBlue.Repositories.Implementations;
+
 
 namespace VodakomBlue
 {
@@ -29,6 +33,32 @@ namespace VodakomBlue
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+          
+            services.AddDbContextPool<DbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("VodakomDb")));
+
+            services.AddScoped<IAddressRepository, AddressRepository>();
+
+            services.AddScoped<IContractRepository, ContractRepository>();
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+            services.AddScoped<IHomeInternetRepository, HomeInternetRepository>();
+
+            services.AddScoped<IHomeInternetServiceRepository, HomeInternetServiceRepository>();
+
+            services.AddScoped<IHomePhoneRepository, HomePhoneRepository>();
+
+            services.AddScoped<IHomePhoneServiceRepository, HomePhoneServiceRepository>();
+
+            services.AddScoped<IHomeTVRepository, HomeTVRepository>();
+
+            services.AddScoped<IHomeTvServiceRepository, HomeTvServiceRepository>();
+
+            services.AddScoped<IMobileInternetPackageRepository, MobileInternetPackageRepository>();
+
+            services.AddScoped<IMobilePhonePackageRepository, MobilePhonePackageRepository>();
+
+            services.AddScoped<IMobileServiceRepository, MobileServiceRepository>();
 
             services.AddControllersWithViews();
 
