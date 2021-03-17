@@ -25,5 +25,10 @@ namespace VodakomBlue.Model
             : base(option)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
+            //modelBuilder.Entity<HomeInternetService>().ToTable("HomeInternetService");
+        }
     }
 }

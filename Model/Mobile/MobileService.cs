@@ -14,12 +14,6 @@ namespace VodakomBlue.Model.Mobile
         [MaxLength(12)]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "ContractId is required")]
-        public int ContractId { get; set; }
-
-        [Required(ErrorMessage = "CustomerID is required")]
-        public Customer Customer { get; set; }
-
         public MobilePhonePackage MobilePhonePackage { get; set; }
 
         [Required(ErrorMessage = "Mobile Internet Package is required")]
