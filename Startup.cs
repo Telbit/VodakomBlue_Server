@@ -34,7 +34,7 @@ namespace VodakomBlue
                 options.Cookie.IsEssential = true;
             });
           
-            services.AddDbContextPool<DbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("VodakomDb")));
+            services.AddDbContextPool<Model.AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("VodakomDbConnection")));
 
             services.AddScoped<IAddressRepository, AddressRepository>();
 

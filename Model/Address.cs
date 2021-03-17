@@ -9,7 +9,7 @@ namespace VodakomBlue.Model
     public class Address
     {
         [Key]
-        public int Id { get; }
+        public int Id { get; set; }
 
         [MaxLength(4)]
         [Required(ErrorMessage = "Zip is required")]
