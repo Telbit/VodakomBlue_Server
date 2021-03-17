@@ -6,8 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using VodakomBlue.Repositories;
 using VodakomBlue.Repositories.Implementations;
+
 
 namespace VodakomBlue
 {
@@ -23,6 +25,15 @@ namespace VodakomBlue
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(600);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+          
             services.AddDbContextPool<DbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("VodakomDb")));
 
             services.AddScoped<IAddressRepository, AddressRepository>();
@@ -77,6 +88,8 @@ namespace VodakomBlue
             app.UseSpaStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
