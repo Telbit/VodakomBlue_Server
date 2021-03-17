@@ -60,7 +60,7 @@ namespace VodakomBlue
 
             services.AddScoped<IMobileServiceRepository, MobileServiceRepository>();
 
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>;
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
             services.AddControllersWithViews();
 
