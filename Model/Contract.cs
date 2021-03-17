@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using VodakomBlue.Model.Home;
+using VodakomBlue.Model.Mobile;
 
 namespace VodakomBlue.Model
 {
@@ -24,7 +26,10 @@ namespace VodakomBlue.Model
 
         [Required(ErrorMessage = "End date is required")]
         public DateTime EndDate { get; set; }
-        [Required(ErrorMessage = "Atleast one service required")]
-        public List<Service> Services { get; set; }
+
+        public List<MobileService> MobileServices { get; set; }
+        public List<HomeInternetService> HomeInternetServices { get; set; }
+        public List<HomePhoneService> HomePhoneServices { get; set; }
+        public List<HomeTvService> HomeTvServices { get; set; }
     }
 }

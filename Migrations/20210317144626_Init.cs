@@ -132,7 +132,7 @@ namespace VodakomBlue.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -181,7 +181,7 @@ namespace VodakomBlue.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Contracts_Employees_SalesmanId",
                         column: x => x.SalesmanId,
@@ -191,83 +191,160 @@ namespace VodakomBlue.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Service",
+                name: "HomeInternetServices",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    InternetId = table.Column<int>(type: "int", nullable: true),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     ContractId = table.Column<int>(type: "int", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InternetId = table.Column<int>(type: "int", nullable: true),
-                    HomeInternetService_AddressId = table.Column<int>(type: "int", nullable: true),
-                    PhoneId = table.Column<int>(type: "int", nullable: true),
-                    HomePhoneService_AddressId = table.Column<int>(type: "int", nullable: true),
-                    TvId = table.Column<int>(type: "int", nullable: true),
-                    AddressId = table.Column<int>(type: "int", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: true),
-                    MobilePhonePackageId = table.Column<int>(type: "int", nullable: true),
-                    MobileInternetPackageId = table.Column<int>(type: "int", nullable: true)
+                    AddressId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Service", x => x.Id);
+                    table.PrimaryKey("PK_HomeInternetServices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Service_Addresses_AddressId",
+                        name: "FK_HomeInternetServices_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Service_Addresses_HomeInternetService_AddressId",
-                        column: x => x.HomeInternetService_AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Service_Addresses_HomePhoneService_AddressId",
-                        column: x => x.HomePhoneService_AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Service_Contracts_ContractId",
+                        name: "FK_HomeInternetServices_Contracts_ContractId",
                         column: x => x.ContractId,
                         principalTable: "Contracts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Service_Customers_CustomerId",
+                        name: "FK_HomeInternetServices_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Service_HomeInternets_InternetId",
+                        name: "FK_HomeInternetServices_HomeInternets_InternetId",
                         column: x => x.InternetId,
                         principalTable: "HomeInternets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HomePhoneServices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PhoneId = table.Column<int>(type: "int", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    ContractId = table.Column<int>(type: "int", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HomePhoneServices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Service_HomePhones_PhoneId",
+                        name: "FK_HomePhoneServices_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_HomePhoneServices_Contracts_ContractId",
+                        column: x => x.ContractId,
+                        principalTable: "Contracts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HomePhoneServices_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_HomePhoneServices_HomePhones_PhoneId",
                         column: x => x.PhoneId,
                         principalTable: "HomePhones",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HomeTvServices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TvId = table.Column<int>(type: "int", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    ContractId = table.Column<int>(type: "int", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HomeTvServices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Service_HomeTVs_TvId",
+                        name: "FK_HomeTvServices_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_HomeTvServices_Contracts_ContractId",
+                        column: x => x.ContractId,
+                        principalTable: "Contracts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HomeTvServices_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_HomeTvServices_HomeTVs_TvId",
                         column: x => x.TvId,
                         principalTable: "HomeTVs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MobileServices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    MobilePhonePackageId = table.Column<int>(type: "int", nullable: true),
+                    MobileInternetPackageId = table.Column<int>(type: "int", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    ContractId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MobileServices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Service_MobileInternetPackages_MobileInternetPackageId",
+                        name: "FK_MobileServices_Contracts_ContractId",
+                        column: x => x.ContractId,
+                        principalTable: "Contracts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MobileServices_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MobileServices_MobileInternetPackages_MobileInternetPackageId",
                         column: x => x.MobileInternetPackageId,
                         principalTable: "MobileInternetPackages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Service_MobilePhonePackages_MobilePhonePackageId",
+                        name: "FK_MobileServices_MobilePhonePackages_MobilePhonePackageId",
                         column: x => x.MobilePhonePackageId,
                         principalTable: "MobilePhonePackages",
                         principalColumn: "Id",
@@ -295,63 +372,99 @@ namespace VodakomBlue.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_AddressId",
-                table: "Service",
+                name: "IX_HomeInternetServices_AddressId",
+                table: "HomeInternetServices",
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_ContractId",
-                table: "Service",
+                name: "IX_HomeInternetServices_ContractId",
+                table: "HomeInternetServices",
                 column: "ContractId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_CustomerId",
-                table: "Service",
+                name: "IX_HomeInternetServices_CustomerId",
+                table: "HomeInternetServices",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_HomeInternetService_AddressId",
-                table: "Service",
-                column: "HomeInternetService_AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Service_HomePhoneService_AddressId",
-                table: "Service",
-                column: "HomePhoneService_AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Service_InternetId",
-                table: "Service",
+                name: "IX_HomeInternetServices_InternetId",
+                table: "HomeInternetServices",
                 column: "InternetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_MobileInternetPackageId",
-                table: "Service",
-                column: "MobileInternetPackageId");
+                name: "IX_HomePhoneServices_AddressId",
+                table: "HomePhoneServices",
+                column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_MobilePhonePackageId",
-                table: "Service",
-                column: "MobilePhonePackageId");
+                name: "IX_HomePhoneServices_ContractId",
+                table: "HomePhoneServices",
+                column: "ContractId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_PhoneId",
-                table: "Service",
+                name: "IX_HomePhoneServices_CustomerId",
+                table: "HomePhoneServices",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HomePhoneServices_PhoneId",
+                table: "HomePhoneServices",
                 column: "PhoneId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_TvId",
-                table: "Service",
+                name: "IX_HomeTvServices_AddressId",
+                table: "HomeTvServices",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HomeTvServices_ContractId",
+                table: "HomeTvServices",
+                column: "ContractId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HomeTvServices_CustomerId",
+                table: "HomeTvServices",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HomeTvServices_TvId",
+                table: "HomeTvServices",
                 column: "TvId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MobileServices_ContractId",
+                table: "MobileServices",
+                column: "ContractId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MobileServices_CustomerId",
+                table: "MobileServices",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MobileServices_MobileInternetPackageId",
+                table: "MobileServices",
+                column: "MobileInternetPackageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MobileServices_MobilePhonePackageId",
+                table: "MobileServices",
+                column: "MobilePhonePackageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Service");
+                name: "HomeInternetServices");
 
             migrationBuilder.DropTable(
-                name: "Contracts");
+                name: "HomePhoneServices");
+
+            migrationBuilder.DropTable(
+                name: "HomeTvServices");
+
+            migrationBuilder.DropTable(
+                name: "MobileServices");
 
             migrationBuilder.DropTable(
                 name: "HomeInternets");
@@ -361,6 +474,9 @@ namespace VodakomBlue.Migrations
 
             migrationBuilder.DropTable(
                 name: "HomeTVs");
+
+            migrationBuilder.DropTable(
+                name: "Contracts");
 
             migrationBuilder.DropTable(
                 name: "MobileInternetPackages");

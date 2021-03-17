@@ -214,6 +214,38 @@ namespace VodakomBlue.Migrations
                     b.ToTable("HomeInternets");
                 });
 
+            modelBuilder.Entity("VodakomBlue.Model.Home.HomeInternetService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("InternetId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("ContractId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("InternetId");
+
+                    b.ToTable("HomeInternetServices");
+                });
+
             modelBuilder.Entity("VodakomBlue.Model.Home.HomePhone", b =>
                 {
                     b.Property<int>("Id")
@@ -240,6 +272,38 @@ namespace VodakomBlue.Migrations
                     b.ToTable("HomePhones");
                 });
 
+            modelBuilder.Entity("VodakomBlue.Model.Home.HomePhoneService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PhoneId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("ContractId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("PhoneId");
+
+                    b.ToTable("HomePhoneServices");
+                });
+
             modelBuilder.Entity("VodakomBlue.Model.Home.HomeTV", b =>
                 {
                     b.Property<int>("Id")
@@ -261,6 +325,38 @@ namespace VodakomBlue.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HomeTVs");
+                });
+
+            modelBuilder.Entity("VodakomBlue.Model.Home.HomeTvService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TvId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("ContractId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("TvId");
+
+                    b.ToTable("HomeTvServices");
                 });
 
             modelBuilder.Entity("VodakomBlue.Model.Mobile.MobileInternetPackage", b =>
@@ -327,7 +423,7 @@ namespace VodakomBlue.Migrations
                     b.ToTable("MobilePhonePackages");
                 });
 
-            modelBuilder.Entity("VodakomBlue.Model.Service", b =>
+            modelBuilder.Entity("VodakomBlue.Model.Mobile.MobileService", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -340,78 +436,6 @@ namespace VodakomBlue.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContractId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Service");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Service");
-                });
-
-            modelBuilder.Entity("VodakomBlue.Model.Home.HomeInternetService", b =>
-                {
-                    b.HasBaseType("VodakomBlue.Model.Service");
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int")
-                        .HasColumnName("HomeInternetService_AddressId");
-
-                    b.Property<int?>("InternetId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("InternetId");
-
-                    b.HasDiscriminator().HasValue("HomeInternetService");
-                });
-
-            modelBuilder.Entity("VodakomBlue.Model.Home.HomePhoneService", b =>
-                {
-                    b.HasBaseType("VodakomBlue.Model.Service");
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int")
-                        .HasColumnName("HomePhoneService_AddressId");
-
-                    b.Property<int?>("PhoneId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("PhoneId");
-
-                    b.HasDiscriminator().HasValue("HomePhoneService");
-                });
-
-            modelBuilder.Entity("VodakomBlue.Model.Home.HomeTvService", b =>
-                {
-                    b.HasBaseType("VodakomBlue.Model.Service");
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TvId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("TvId");
-
-                    b.HasDiscriminator().HasValue("HomeTvService");
-                });
-
-            modelBuilder.Entity("VodakomBlue.Model.Mobile.MobileService", b =>
-                {
-                    b.HasBaseType("VodakomBlue.Model.Service");
-
                     b.Property<int?>("MobileInternetPackageId")
                         .HasColumnType("int");
 
@@ -423,11 +447,17 @@ namespace VodakomBlue.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContractId");
+
+                    b.HasIndex("CustomerId");
+
                     b.HasIndex("MobileInternetPackageId");
 
                     b.HasIndex("MobilePhonePackageId");
 
-                    b.HasDiscriminator().HasValue("MobileService");
+                    b.ToTable("MobileServices");
                 });
 
             modelBuilder.Entity("VodakomBlue.Model.Address", b =>
@@ -467,36 +497,33 @@ namespace VodakomBlue.Migrations
                     b.Navigation("Address");
                 });
 
-            modelBuilder.Entity("VodakomBlue.Model.Service", b =>
-                {
-                    b.HasOne("VodakomBlue.Model.Contract", "Contract")
-                        .WithMany("Services")
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("VodakomBlue.Model.Customer", "Customer")
-                        .WithMany("Services")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Contract");
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("VodakomBlue.Model.Home.HomeInternetService", b =>
                 {
                     b.HasOne("VodakomBlue.Model.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
 
+                    b.HasOne("VodakomBlue.Model.Contract", "Contract")
+                        .WithMany("HomeInternetServices")
+                        .HasForeignKey("ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VodakomBlue.Model.Customer", "Customer")
+                        .WithMany("HomeInternetServices")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("VodakomBlue.Model.Home.HomeInternet", "Internet")
                         .WithMany()
                         .HasForeignKey("InternetId");
 
                     b.Navigation("Address");
+
+                    b.Navigation("Contract");
+
+                    b.Navigation("Customer");
 
                     b.Navigation("Internet");
                 });
@@ -507,11 +534,27 @@ namespace VodakomBlue.Migrations
                         .WithMany()
                         .HasForeignKey("AddressId");
 
+                    b.HasOne("VodakomBlue.Model.Contract", "Contract")
+                        .WithMany("HomePhoneServices")
+                        .HasForeignKey("ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VodakomBlue.Model.Customer", "Customer")
+                        .WithMany("HomePhoneServices")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("VodakomBlue.Model.Home.HomePhone", "Phone")
                         .WithMany()
                         .HasForeignKey("PhoneId");
 
                     b.Navigation("Address");
+
+                    b.Navigation("Contract");
+
+                    b.Navigation("Customer");
 
                     b.Navigation("Phone");
                 });
@@ -522,17 +565,45 @@ namespace VodakomBlue.Migrations
                         .WithMany()
                         .HasForeignKey("AddressId");
 
+                    b.HasOne("VodakomBlue.Model.Contract", "Contract")
+                        .WithMany("HomeTvServices")
+                        .HasForeignKey("ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VodakomBlue.Model.Customer", "Customer")
+                        .WithMany("HomeTvServices")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("VodakomBlue.Model.Home.HomeTV", "Tv")
                         .WithMany()
                         .HasForeignKey("TvId");
 
                     b.Navigation("Address");
 
+                    b.Navigation("Contract");
+
+                    b.Navigation("Customer");
+
                     b.Navigation("Tv");
                 });
 
             modelBuilder.Entity("VodakomBlue.Model.Mobile.MobileService", b =>
                 {
+                    b.HasOne("VodakomBlue.Model.Contract", "Contract")
+                        .WithMany("MobileServices")
+                        .HasForeignKey("ContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VodakomBlue.Model.Customer", "Customer")
+                        .WithMany("MobileServices")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("VodakomBlue.Model.Mobile.MobileInternetPackage", "MobileInternetPackage")
                         .WithMany()
                         .HasForeignKey("MobileInternetPackageId");
@@ -541,6 +612,10 @@ namespace VodakomBlue.Migrations
                         .WithMany()
                         .HasForeignKey("MobilePhonePackageId");
 
+                    b.Navigation("Contract");
+
+                    b.Navigation("Customer");
+
                     b.Navigation("MobileInternetPackage");
 
                     b.Navigation("MobilePhonePackage");
@@ -548,7 +623,13 @@ namespace VodakomBlue.Migrations
 
             modelBuilder.Entity("VodakomBlue.Model.Contract", b =>
                 {
-                    b.Navigation("Services");
+                    b.Navigation("HomeInternetServices");
+
+                    b.Navigation("HomePhoneServices");
+
+                    b.Navigation("HomeTvServices");
+
+                    b.Navigation("MobileServices");
                 });
 
             modelBuilder.Entity("VodakomBlue.Model.Customer", b =>
@@ -557,7 +638,13 @@ namespace VodakomBlue.Migrations
 
                     b.Navigation("Contracts");
 
-                    b.Navigation("Services");
+                    b.Navigation("HomeInternetServices");
+
+                    b.Navigation("HomePhoneServices");
+
+                    b.Navigation("HomeTvServices");
+
+                    b.Navigation("MobileServices");
                 });
 #pragma warning restore 612, 618
         }

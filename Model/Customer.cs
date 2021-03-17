@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using VodakomBlue.Model.Home;
+using VodakomBlue.Model.Mobile;
 
 namespace VodakomBlue.Model
 {
@@ -11,6 +13,9 @@ namespace VodakomBlue.Model
         [Required(ErrorMessage = "Adresses is required")]
         public List<Address> Adresses { get; set; }
         public List<Contract> Contracts { get; set; }
-        public List<Service> Services { get; set; }
+        public List<MobileService> MobileServices { get; set; }
+        public List<HomeInternetService> HomeInternetServices { get; set; }
+        public List<HomePhoneService> HomePhoneServices { get; set; }
+        public List<HomeTvService> HomeTvServices { get; set; }
     }
 }
