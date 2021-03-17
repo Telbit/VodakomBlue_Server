@@ -60,6 +60,8 @@ namespace VodakomBlue
 
             services.AddScoped<IMobileServiceRepository, MobileServiceRepository>();
 
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>;
+
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
