@@ -21,15 +21,24 @@ namespace VodakomBlue.Controllers
         }
 
         [HttpGet("userId")]
-        public async Task<IEnumerable<Contract>> GetContracts(int userId)
+        public async Task<IActionResult> GetContracts(int userId)
         {
-            return await contractService.GetAllContractAsync(userId);
+            if (userId == 0)
+            {
+                return BadRequest();
+            }
+            return Ok(await contractService.GetAllContractAsync(userId));
         }
 
         [HttpPost]
-        public async Task AddContract(Contract contract)
+        public async Task<IActionResult> AddContract(Contract contract)
         {
+            if (contract == null)
+            {
+                return BadRequest();
+            }
             await contractService.AddContractAsync(contract);
+            return Ok();
         }
     }
 }

@@ -20,28 +20,47 @@ namespace VodakomBlue.Controllers
         }
 
         [HttpGet("id")]
-        public async Task<Employee> GetEmployee(int employeeId)
+        public async Task<IActionResult> GetEmployee(int employeeId)
         {
-            return await employeeService.GetEmployeeAsync(employeeId);
+            if (employeeId == 0)
+            {
+                return BadRequest();
+            }
+            return Ok(await employeeService.GetEmployeeAsync(employeeId));
 
         }
 
         [HttpPost]
-        public async Task AddEmployee(Employee newEmployee)
+        public async Task<IActionResult> AddEmployee(Employee newEmployee)
         {
+            if (newEmployee == null)
+            {
+                return BadRequest();
+            }
              await employeeService.AddEmployeeAsync(newEmployee);
+            return Ok();
         }
 
         [HttpDelete("id")]
-        public void DeleteEmployee(int employeeId)
+        public IActionResult DeleteEmployee(int employeeId)
         {
+            if (employeeId == 0)
+            {
+                return BadRequest();
+            }
             employeeService.DeleteEmployee(employeeId);
+            return Ok();
         }
 
         [HttpPut]
-        public void UpdateEmployee(Employee employee)
+        public IActionResult UpdateEmployee(Employee employee)
         {
+            if (employee == null)
+            {
+                return BadRequest(); 
+            }
             employeeService.UpdateEmployee(employee);
+            return Ok();
         }
 
     }

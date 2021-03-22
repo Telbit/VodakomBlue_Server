@@ -22,27 +22,46 @@ namespace VodakomBlue.Controllers
         }
 
         [HttpGet("customerId")]
-        public async Task<IEnumerable<Address>> GetAddresses(int customerId)
+        public async Task<IActionResult> GetAddresses(int customerId)
         {
-            return await addressService.GetAddressesAsync(customerId);
+            if (customerId == 0)
+            {
+                return BadRequest();
+            }
+            return Ok(await addressService.GetAddressesAsync(customerId));
         }
 
         [HttpPost]
-        public async Task AddAddress(Address newAddress)
+        public async Task<IActionResult> AddAddress(Address newAddress)
         {
+            if (newAddress == null)
+            {
+                return BadRequest();
+            }
             await addressService.AddAddressAsync(newAddress);
+            return Ok();
         }
 
         [HttpPut]
-        public void UpdateAddress(Address address)
+        public IActionResult UpdateAddress(Address address)
         {
+            if (address == null)
+            {
+                return BadRequest();
+            }
             addressService.UpdateAddress(address);
+            return Ok();
         }
 
         [HttpDelete("addressId")]
-        public void DeleteAddress(int addressId)
+        public IActionResult DeleteAddress(int addressId)
         {
+            if (addressId == 0)
+            {
+                return BadRequest();
+            }
             addressService.DeleteAddress(addressId);
+            return Ok();
         }
     }
 }
