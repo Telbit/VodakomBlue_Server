@@ -1,0 +1,78 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using VodakomBlue.Model;
+using VodakomBlue.Repositories;
+
+namespace VodakomBlue.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CustomerController : ControllerBase
+    {
+        private readonly ICustomerRepository customerService;
+
+        public CustomerController(ICustomerRepository service)
+        {
+            customerService = service;
+        }
+
+        [HttpGet("cutomerId")]
+        public async Task<IActionResult> GetCustomer(Customer customer)
+        {
+            if (customer.Id != null)
+            {
+                return Ok(await customerService.GetCustomerAsync(customer.Id));
+
+            }
+            else if (customer.ContactPhoneNumber != null)
+            {
+                return Ok(await customerService.GetCustomerAsync(customer.ContactPhoneNumber));
+
+            }
+            else if (customer.IdCardNumber != null && customer.FirstName != null & customer.LastName != null)
+            {
+                return Ok(await customerService.GetCustomerAsync(customer.IdCardNumber, customer.FirstName, customer.LastName));
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("customerId")]
+        public IActionResult DeleteCustomer(int customerId)
+        {
+            if (customerId == 0)
+            {
+                return BadRequest();
+            }
+            customerService.DeleteCustomer(customerId);
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCustomer(Customer customer)
+        {
+
+            if (customer == null)
+            {
+                return BadRequest();
+            }
+            await customerService.AddCustomerAsync(customer);
+            return Ok();
+            
+        }
+
+        [HttpPut]
+        public IActionResult UpdateCustomer(Customer customer)
+        {
+            if (customer == null)
+            {
+                return BadRequest();
+            }
+            customerService.UpdateCustomer(customer);
+            return Ok();
+        }
+    }
+}
