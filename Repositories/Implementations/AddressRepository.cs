@@ -40,5 +40,10 @@ namespace VodakomBlue.Repositories.Implementations
             adressToModify.State = EntityState.Modified;
             dbContext.SaveChanges();
         }
+
+        public async Task<Address> GetAddressAsync(int addressId)
+        {
+            return await dbContext.Addresses.FindAsync(addressId);
+        }
     }
 }
