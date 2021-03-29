@@ -38,7 +38,7 @@ namespace VodakomBlue.Controllers
             return BadRequest();
         }
 
-        [HttpPost()]
+        [HttpPost]
         public async Task<IActionResult> AddPackage(MobileInternetPackage _mobileInternetPackage) {
             await mobileInternetPackage.AddPackageAsync(_mobileInternetPackage);
             return Ok();
