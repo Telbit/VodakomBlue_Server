@@ -27,6 +27,7 @@ namespace VodakomBlue.Repositories.Implementations
         public void DeleteAddress(Address address)
         {
             dbContext.Addresses.Remove(address);
+            dbContext.SaveChanges();
         }
 
         public async Task<IEnumerable<Address>> GetAddressesAsync(int customerId)

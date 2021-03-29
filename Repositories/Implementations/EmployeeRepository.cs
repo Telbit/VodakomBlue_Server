@@ -23,6 +23,7 @@ namespace VodakomBlue.Repositories.Implementations
         public void DeleteEmployee(Employee employee)
         {
             dbContext.Employees.Remove(employee);
+            dbContext.SaveChanges();
         }
 
         public async Task<Employee> GetEmployeeAsync(int employeeId)

@@ -25,6 +25,7 @@ namespace VodakomBlue.Repositories.Implementations
         public void DeleteCustomer(Customer customer)
         {
             dbContext.Customers.Remove(customer);
+            dbContext.SaveChanges();
         }
 
         public async Task<Customer> GetCustomerAsync(int userId)
