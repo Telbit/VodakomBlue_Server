@@ -13,7 +13,7 @@ namespace VodakomBlue.Controllers
     [ApiController]
     public class MobilePhonePackageController : ControllerBase
     {
-        IMobilePhonePackageRepository mobilePhonePackageRepository;
+        private readonly IMobilePhonePackageRepository mobilePhonePackageRepository;
 
         public MobilePhonePackageController(IMobilePhonePackageRepository _mobilePhonePackageRepository)
         {
