@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Home;
-using VodakomBlue.Repositories.Implementations;
+using VodakomBlue.Repositories;
 
 namespace VodakomBlue.Controllers.HomeControllers
 {
@@ -13,9 +13,9 @@ namespace VodakomBlue.Controllers.HomeControllers
     [ApiController]
     public class HomePhoneController : ControllerBase
     {
-        private readonly HomePhoneRepository homePhoneRepository;
+        private readonly IHomePhoneRepository homePhoneRepository;
 
-        public HomePhoneController(HomePhoneRepository homePhoneRepository)
+        public HomePhoneController(IHomePhoneRepository homePhoneRepository)
         {
             this.homePhoneRepository = homePhoneRepository;
         }

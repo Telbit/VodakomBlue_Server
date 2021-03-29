@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Home;
-using VodakomBlue.Repositories.Implementations;
+using VodakomBlue.Repositories;
 
 namespace VodakomBlue.Controllers.HomeControllers
 {
@@ -13,9 +13,9 @@ namespace VodakomBlue.Controllers.HomeControllers
     [ApiController]
     public class HomeInternetController : ControllerBase
     {
-        private readonly HomeInternetRepository homeInternetRepository;
+        private readonly IHomeInternetRepository homeInternetRepository;
 
-        public HomeInternetController(HomeInternetRepository homeInternetRepository)
+        public HomeInternetController(IHomeInternetRepository homeInternetRepository)
         {
             this.homeInternetRepository = homeInternetRepository;
         }

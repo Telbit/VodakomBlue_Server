@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VodakomBlue.Model.Home;
-using VodakomBlue.Repositories.Implementations;
+using VodakomBlue.Repositories;
 
 namespace VodakomBlue.Controllers.HomeControllers
 {
@@ -13,9 +13,9 @@ namespace VodakomBlue.Controllers.HomeControllers
     [ApiController]
     public class HomeTvController : ControllerBase
     {
-        private readonly HomeTVRepository homeTvRepository;
+        private readonly IHomeTVRepository homeTvRepository;
 
-        public HomeTvController(HomeTVRepository homeTvRepository)
+        public HomeTvController(IHomeTVRepository homeTvRepository)
         {
             this.homeTvRepository = homeTvRepository;
         }
