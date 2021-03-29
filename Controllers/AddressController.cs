@@ -60,8 +60,13 @@ namespace VodakomBlue.Controllers
             {
                 return BadRequest("Invalid Address ID");
             }
-            addressService.DeleteAddress(addressId);
-            return Ok();
+            Address address = addressService.GetAddressAsync(addressId).Result;
+            if (address != null)
+            {
+                addressService.DeleteAddress(address);
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }
