@@ -54,7 +54,7 @@ namespace VodakomBlue.Controllers
                 employeeService.DeleteEmployee(employee);
                 return Ok();
             }
-            return NotFound();
+            return NotFound("Employee not found with the provided Employee ID");
         }
 
         [HttpPut]
