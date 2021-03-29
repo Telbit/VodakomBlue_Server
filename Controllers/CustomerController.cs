@@ -53,7 +53,7 @@ namespace VodakomBlue.Controllers
                 customerService.DeleteCustomer(customer);
                 return Ok();
             }
-            return NotFound();
+            return NotFound("Customer not found with the provided Customer ID");
         }
 
         [HttpPost]
