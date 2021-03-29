@@ -13,25 +13,25 @@ namespace VodakomBlue.Controllers.HomeControllers
     [ApiController]
     public class HomeServiceController : ControllerBase
     {
-        private readonly IHomeInternetServiceRepository HomeInternetService;
-        private readonly IHomePhoneServiceRepository HomePhoneService;
-        private readonly IHomeTvServiceRepository HomeTvService;
+        private readonly IHomeInternetServiceRepository HomeInternetServiceRepository;
+        private readonly IHomePhoneServiceRepository HomePhoneServiceRepository;
+        private readonly IHomeTvServiceRepository HomeTvServiceRepository;
 
-        public HomeServiceController(IHomeInternetServiceRepository homeInternetService, 
-            IHomePhoneServiceRepository homePhoneService, IHomeTvServiceRepository homeTvService)
+        public HomeServiceController(IHomeInternetServiceRepository homeInternetServiceRepository, 
+            IHomePhoneServiceRepository homePhoneServiceRepository, IHomeTvServiceRepository homeTvServiceRepository)
         {
-            HomeInternetService = homeInternetService;
-            HomePhoneService = homePhoneService;
-            HomeTvService = homeTvService;
+            HomeInternetServiceRepository = homeInternetServiceRepository;
+            HomePhoneServiceRepository = homePhoneServiceRepository;
+            HomeTvServiceRepository = homeTvServiceRepository;
         }
 
-        [HttpGet("/id")]
-        public async Task<IEnumerable<HomeService>> GetHomeServices(int id)
+        [HttpGet("{customerId}")]
+        public async Task<IEnumerable<HomeService>> GetAllHomeServices(int customerId)
         {
             List<HomeService> HomeServices = new List<HomeService>();
-            HomeServices.Concat(await HomeInternetService.GetServicesAsync(id))
-                        .Concat(await HomePhoneService.GetServicesAsync(id))
-                        .Concat(await HomeTvService.GetServicesAsync(id))
+            HomeServices.Concat(await HomeInternetServiceRepository.GetServicesAsync(customerId))
+                        .Concat(await HomePhoneServiceRepository.GetServicesAsync(customerId))
+                        .Concat(await HomeTvServiceRepository.GetServicesAsync(customerId))
                         .ToList();
             return HomeServices;
         }
