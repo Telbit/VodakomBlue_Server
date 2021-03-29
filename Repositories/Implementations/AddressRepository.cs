@@ -24,9 +24,9 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
         
-        public void DeleteAddress(int addressId)
+        public void DeleteAddress(Address address)
         {
-            throw new NotImplementedException();
+            dbContext.Addresses.Remove(address);
         }
 
         public async Task<IEnumerable<Address>> GetAddressesAsync(int customerId)
@@ -36,8 +36,8 @@ namespace VodakomBlue.Repositories.Implementations
 
         public void UpdateAddress(Address address)
         {
-            var addressToUpdate = dbContext.Attach(address);
-            addressToUpdate.State = EntityState.Modified;
+            var adressToModify = dbContext.Addresses.Attach(address);
+            adressToModify.State = EntityState.Modified;
             dbContext.SaveChanges();
         }
     }

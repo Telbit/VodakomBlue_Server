@@ -20,11 +20,9 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.Employees.AddAsync(employee);
             await dbContext.SaveChangesAsync();
         }
-        public void DeleteEmployee(int employeeId)
+        public void DeleteEmployee(Employee employee)
         {
-            Employee employeeToDelete = GetEmployeeAsync(employeeId).Result;
-            dbContext.Employees.Remove(employeeToDelete);
-            dbContext.SaveChanges();
+            dbContext.Employees.Remove(employee);
         }
 
         public async Task<Employee> GetEmployeeAsync(int employeeId)
@@ -34,7 +32,7 @@ namespace VodakomBlue.Repositories.Implementations
 
         public void UpdateEmployee(Employee employee)
         {
-            var employeeToUpdate = dbContext.Attach(employee);
+            var employeeToUpdate = dbContext.Employees.Attach(employee);
             employeeToUpdate.State = EntityState.Modified;
             dbContext.SaveChanges();
         }
