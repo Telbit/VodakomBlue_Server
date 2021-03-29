@@ -12,7 +12,7 @@ namespace VodakomBlue.Repositories
         Task<MobileInternetPackage> GetPackageAsync(int packageId);
         Task<IEnumerable<MobileInternetPackage>> GetAllPackageAsync();
         Task AddPackageAsync(MobileInternetPackage newPackage);
-        void DeletePackage(int packageId);
+        void DeletePackage(MobileInternetPackage mobileInternetPackage);
 
     }
 }

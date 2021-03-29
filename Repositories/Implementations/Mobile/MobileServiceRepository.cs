@@ -23,9 +23,8 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public void DeleteService(int serviceId)
+        public void DeleteService(MobileService mobileService)
         {
-            MobileService mobileService = dbContext.MobileServices.Find(serviceId);
             dbContext.MobileServices.Remove(mobileService);
             dbContext.SaveChanges();
         }
@@ -33,6 +32,10 @@ namespace VodakomBlue.Repositories.Implementations
         public async Task<IEnumerable<MobileService>> GetServicesAsync(int customerId)
         {
             return await dbContext.MobileServices.Where(service => service.Customer.Id == customerId).ToListAsync();
+        }
+
+        public async Task<MobileService> GetServiceAsync(int serviceId) {
+            return await dbContext.MobileServices.FindAsync(serviceId);
         }
 
         public void UpdateService(MobileService homeService)
