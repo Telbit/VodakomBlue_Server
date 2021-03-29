@@ -48,8 +48,13 @@ namespace VodakomBlue.Controllers
             {
                 return BadRequest("Invalid Employee ID");
             }
-            employeeService.DeleteEmployee(employeeId);
-            return Ok();
+            Employee employee = employeeService.GetEmployeeAsync(employeeId).Result;
+            if (employee != null)
+            {
+                employeeService.DeleteEmployee(employee);
+                return Ok();
+            }
+            return NotFound();
         }
 
         [HttpPut]

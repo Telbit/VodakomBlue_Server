@@ -47,8 +47,13 @@ namespace VodakomBlue.Controllers
             {
                 return BadRequest("Invalid Customer ID");
             }
-            customerService.DeleteCustomer(customerId);
-            return Ok();
+            Customer customer = customerService.GetCustomerAsync(customerId).Result;
+            if (customer != null)
+            {
+                customerService.DeleteCustomer(customer);
+                return Ok();
+            }
+            return NotFound();
         }
 
         [HttpPost]
