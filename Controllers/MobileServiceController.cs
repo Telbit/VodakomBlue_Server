@@ -13,38 +13,42 @@ namespace VodakomBlue.Controllers
     [ApiController]
     public class MobileServiceController : ControllerBase
     {
-        private readonly IMobileServiceRepository mobileService;
+        private readonly IMobileServiceRepository mobileServiceRepository;
 
         public MobileServiceController(IMobileServiceRepository _mobileService)
         {
-            mobileService = _mobileService;
+            mobileServiceRepository = _mobileService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetService(int customerId) {
-            return Ok(await mobileService.GetServicesAsync(customerId));   
+            return Ok(await mobileServiceRepository.GetServicesAsync(customerId));   
         }
 
         [HttpPost]
         public async Task<IActionResult> AddService(MobileService _mobileService) {
-            await mobileService.AddServiceAsync(_mobileService);
+            await mobileServiceRepository.AddServiceAsync(_mobileService);
             return Ok();
 
             // ?TODO? check if package is Added
         }
 
-        [HttpDelete]
+        [HttpDelete("serviceId")]
         public ActionResult DeleteService(int serviceId) {
             if (serviceId != 0) {
-                mobileService.DeleteService(serviceId);
-                return Ok();
+                MobileService mobileService = mobileServiceRepository.GetServiceAsync(serviceId).Result;
+                if (mobileService != null) { 
+                    mobileServiceRepository.DeleteService(mobileService);
+                    return Ok();
+                }
+                return NotFound();
             }
             return BadRequest();
         }
 
         [HttpPut]
         public ActionResult UpdateService(MobileService _mobileService) {
-            mobileService.UpdateService(_mobileService);
+            mobileServiceRepository.UpdateService(_mobileService);
             return Ok();
         }
     }

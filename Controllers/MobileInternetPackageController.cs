@@ -29,11 +29,15 @@ namespace VodakomBlue.Controllers
             return Ok(await mobileInternetPackage.GetPackageAsync(packageId));
         }
 
-        [HttpDelete]
+        [HttpDelete("packageId")]
         public ActionResult DeletePackage(int packageId) {
             if (packageId != 0) {
-                mobileInternetPackage.DeletePackage(packageId);
-                return Ok();
+                MobileInternetPackage _mobileInternetPackage = mobileInternetPackage.GetPackageAsync(packageId).Result;
+                if (_mobileInternetPackage != null) {
+                    mobileInternetPackage.DeletePackage(_mobileInternetPackage);
+                    return Ok();
+                }
+                return NotFound();
             }
             return BadRequest();
         }
