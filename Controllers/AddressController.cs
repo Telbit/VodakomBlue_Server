@@ -26,7 +26,7 @@ namespace VodakomBlue.Controllers
         {
             if (customerId == 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid Customer ID");
             }
             return Ok(await addressService.GetAddressesAsync(customerId));
         }
@@ -36,7 +36,7 @@ namespace VodakomBlue.Controllers
         {
             if (newAddress == null)
             {
-                return BadRequest();
+                return BadRequest("The provided Address is null");
             }
             await addressService.AddAddressAsync(newAddress);
             return Ok();
@@ -47,7 +47,7 @@ namespace VodakomBlue.Controllers
         {
             if (address == null)
             {
-                return BadRequest();
+                return BadRequest("The provided Address is null");
             }
             addressService.UpdateAddress(address);
             return Ok();
@@ -58,7 +58,7 @@ namespace VodakomBlue.Controllers
         {
             if (addressId == 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid Address ID");
             }
             addressService.DeleteAddress(addressId);
             return Ok();

@@ -23,7 +23,7 @@ namespace VodakomBlue.Controllers
         [HttpGet("cutomerId")]
         public async Task<IActionResult> GetCustomer(Customer customer)
         {
-            if (customer.Id != null)
+            if (customer.Id != 0)
             {
                 return Ok(await customerService.GetCustomerAsync(customer.Id));
 
@@ -37,7 +37,7 @@ namespace VodakomBlue.Controllers
             {
                 return Ok(await customerService.GetCustomerAsync(customer.IdCardNumber, customer.FirstName, customer.LastName));
             }
-            return BadRequest();
+            return BadRequest("Customer is null");
         }
 
         [HttpDelete("customerId")]
@@ -45,7 +45,7 @@ namespace VodakomBlue.Controllers
         {
             if (customerId == 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid Customer ID");
             }
             customerService.DeleteCustomer(customerId);
             return Ok();
@@ -57,7 +57,7 @@ namespace VodakomBlue.Controllers
 
             if (customer == null)
             {
-                return BadRequest();
+                return BadRequest("The provided Customer is null ");
             }
             await customerService.AddCustomerAsync(customer);
             return Ok();
@@ -69,7 +69,7 @@ namespace VodakomBlue.Controllers
         {
             if (customer == null)
             {
-                return BadRequest();
+                return BadRequest("The provided Customer is null ");
             }
             customerService.UpdateCustomer(customer);
             return Ok();

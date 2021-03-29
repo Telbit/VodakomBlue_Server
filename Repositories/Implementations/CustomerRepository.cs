@@ -22,11 +22,9 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public void DeleteCustomer(int customerId)
+        public void DeleteCustomer(Customer customer)
         {
-            Customer customer = GetCustomerAsync(customerId).Result;
             dbContext.Customers.Remove(customer);
-            dbContext.SaveChanges();
         }
 
         public async Task<Customer> GetCustomerAsync(int userId)
@@ -53,8 +51,8 @@ namespace VodakomBlue.Repositories.Implementations
 
         public void UpdateCustomer(Customer customer)
         {
-            var productToUpdate = dbContext.Attach(customer);
-            productToUpdate.State = EntityState.Modified;
+            var customerToUpdate = dbContext.Customers.Attach(customer);
+            customerToUpdate.State = EntityState.Modified;
             dbContext.SaveChanges();
         }
     }
