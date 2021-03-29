@@ -24,7 +24,7 @@ namespace VodakomBlue.Controllers
         {
             if (employeeId == 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid Employee ID");
             }
             return Ok(await employeeService.GetEmployeeAsync(employeeId));
 
@@ -35,7 +35,7 @@ namespace VodakomBlue.Controllers
         {
             if (newEmployee == null)
             {
-                return BadRequest();
+                return BadRequest("The provided Employee is null");
             }
              await employeeService.AddEmployeeAsync(newEmployee);
             return Ok();
@@ -46,7 +46,7 @@ namespace VodakomBlue.Controllers
         {
             if (employeeId == 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid Employee ID");
             }
             employeeService.DeleteEmployee(employeeId);
             return Ok();
@@ -57,7 +57,7 @@ namespace VodakomBlue.Controllers
         {
             if (employee == null)
             {
-                return BadRequest(); 
+                return BadRequest("The provided Employee is null"); 
             }
             employeeService.UpdateEmployee(employee);
             return Ok();

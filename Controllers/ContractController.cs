@@ -25,7 +25,7 @@ namespace VodakomBlue.Controllers
         {
             if (userId == 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid User ID");
             }
             return Ok(await contractService.GetAllContractAsync(userId));
         }
@@ -35,7 +35,7 @@ namespace VodakomBlue.Controllers
         {
             if (contract == null)
             {
-                return BadRequest();
+                return BadRequest("The provided contract is null");
             }
             await contractService.AddContractAsync(contract);
             return Ok();
