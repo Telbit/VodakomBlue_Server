@@ -23,10 +23,9 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public void DeleteService(int serviceId, int customerId)
+        public void DeleteService(int serviceId)
         {
-            MobileService mobileService = 
-                GetServicesAsync(customerId).Result.FirstOrDefault(service => service.Id == serviceId);
+            MobileService mobileService = dbContext.MobileServices.Find(serviceId);
             dbContext.MobileServices.Remove(mobileService);
             dbContext.SaveChanges();
         }
