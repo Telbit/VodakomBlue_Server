@@ -20,7 +20,7 @@ namespace VodakomBlue.Controllers.HomeControllers
             this.homeInternetRepository = homeInternetRepository;
         }
 
-        [HttpGet("{homeInternetId}")]
+        [HttpGet("{homeInternetPackageId}")]
         public async Task<IActionResult> GetHomeInternetPackage(int homeInternetPackageId)
         {
             if (homeInternetPackageId <= 0)
@@ -33,12 +33,7 @@ namespace VodakomBlue.Controllers.HomeControllers
         [HttpGet]
         public async Task<IActionResult> GetAllHomeInternetPackages()
         {
-            var homeInternetPackages = await homeInternetRepository.GetAllHomeInternetAsync();
-            if (homeInternetPackages == null)
-            {
-                return NotFound("home internet packages not found");
-            }
-            return Ok(homeInternetPackages);
+            return Ok(await homeInternetRepository.GetAllHomeInternetAsync());
         }
 
         [HttpDelete]
