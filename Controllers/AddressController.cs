@@ -53,20 +53,16 @@ namespace VodakomBlue.Controllers
             return Ok();
         }
 
-        [HttpDelete("addressId")]
-        public IActionResult DeleteAddress(int addressId)
+        [HttpDelete]
+        public IActionResult DeleteAddress(Address address)
         {
-            if (addressId == 0)
+            if (address == null)
             {
-                return BadRequest("Invalid Address ID");
+                return BadRequest("The provided Address is null");
             }
-            Address address = addressService.GetAddressAsync(addressId).Result;
-            if (address != null)
-            {
-                addressService.DeleteAddress(address);
-                return Ok();
-            }
-            return NotFound();
+            addressService.DeleteAddress(address);
+            return Ok();
+           
         }
     }
 }
