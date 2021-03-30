@@ -46,7 +46,7 @@ namespace VodakomBlue.Controllers
         {
             if (employee == null)
             {
-                return BadRequest("Invalid Employee ID");
+                return BadRequest("The provided Employee is null");
             }
             employeeService.DeleteEmployee(employee);
             return Ok();

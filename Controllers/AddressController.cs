@@ -58,7 +58,7 @@ namespace VodakomBlue.Controllers
         {
             if (address == null)
             {
-                return BadRequest("Invalid Address ID");
+                return BadRequest("The provided Address is null");
             }
             addressService.DeleteAddress(address);
             return Ok();

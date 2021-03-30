@@ -46,7 +46,7 @@ namespace VodakomBlue.Controllers
 
             if (customer == null)
             {
-                return BadRequest("Invalid Customer ID");
+                return BadRequest("The provided Customer is null");
             }
             customerService.DeleteCustomer(customer);
             return Ok();
