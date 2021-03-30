@@ -22,7 +22,11 @@ namespace VodakomBlue.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetService(int customerId) {
-            return Ok(await mobileServiceRepository.GetServicesAsync(customerId));   
+            if (customerId > 0)
+            {
+                return Ok(await mobileServiceRepository.GetServicesAsync(customerId));
+            }
+            return BadRequest();
         }
 
         [HttpPost]

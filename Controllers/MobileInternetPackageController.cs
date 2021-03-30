@@ -26,7 +26,10 @@ namespace VodakomBlue.Controllers
 
         [HttpGet("id")]
         public async Task<IActionResult> GetPackage(int packageId) {
+            if (packageId > 0) { 
             return Ok(await mobileInternetPackage.GetPackageAsync(packageId));
+            }
+            return BadRequest();
         }
 
         [HttpDelete("packageId")]
