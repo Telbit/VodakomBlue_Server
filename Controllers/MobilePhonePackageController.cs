@@ -49,8 +49,11 @@ namespace VodakomBlue.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddPackage(MobilePhonePackage _mobilePhonePackage) {
-            await mobilePhonePackageRepository.AddPackageAsync(_mobilePhonePackage);
-            return Ok();
+            if (_mobilePhonePackage != null) { 
+                await mobilePhonePackageRepository.AddPackageAsync(_mobilePhonePackage);
+                return Ok();
+            }
+            return BadRequest();
 
             // ?TODO? check if package is Added
         }

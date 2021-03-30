@@ -47,11 +47,14 @@ namespace VodakomBlue.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddPackage(MobileInternetPackage _mobileInternetPackage) {
-            await mobileInternetPackage.AddPackageAsync(_mobileInternetPackage);
-            return Ok();
+            if (_mobileInternetPackage != null) {  
+                await mobileInternetPackage.AddPackageAsync(_mobileInternetPackage);
+                return Ok();
+            }
+            return BadRequest();
 
             // ?TODO? check if package is Added
-        
+
         }
 
     }

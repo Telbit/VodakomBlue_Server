@@ -31,8 +31,11 @@ namespace VodakomBlue.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddService(MobileService _mobileService) {
-            await mobileServiceRepository.AddServiceAsync(_mobileService);
-            return Ok();
+            if (_mobileService != null) { 
+                await mobileServiceRepository.AddServiceAsync(_mobileService);
+                return Ok();
+            }
+            return BadRequest();
 
             // ?TODO? check if package is Added
         }
