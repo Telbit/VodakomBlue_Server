@@ -29,7 +29,7 @@ namespace VodakomBlue.Controllers
             if (packageId > 0) { 
             return Ok(await mobileInternetPackage.GetPackageAsync(packageId));
             }
-            return BadRequest();
+            return BadRequest("The given parameter is not valid!");
         }
 
         [HttpDelete]
@@ -38,7 +38,7 @@ namespace VodakomBlue.Controllers
                     mobileInternetPackage.DeletePackage(_mobileInternetPackage);
                     return Ok();
                 }
-                return NotFound();
+                return BadRequest("The given parameter is not valid!");
         }
 
         [HttpPost]
@@ -47,7 +47,7 @@ namespace VodakomBlue.Controllers
                 await mobileInternetPackage.AddPackageAsync(_mobileInternetPackage);
                 return Ok();
             }
-            return BadRequest();
+            return BadRequest("The given parameter is not valid!");
 
             // ?TODO? check if package is Added
 

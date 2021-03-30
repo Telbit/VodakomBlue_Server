@@ -26,7 +26,7 @@ namespace VodakomBlue.Controllers
             {
                 return Ok(await mobileServiceRepository.GetServicesAsync(customerId));
             }
-            return BadRequest();
+            return BadRequest("The given parameter is not valid!");
         }
 
         [HttpPost]
@@ -35,7 +35,7 @@ namespace VodakomBlue.Controllers
                 await mobileServiceRepository.AddServiceAsync(_mobileService);
                 return Ok();
             }
-            return BadRequest();
+            return BadRequest("The given parameter is not valid!");
 
             // ?TODO? check if package is Added
         }
@@ -47,7 +47,7 @@ namespace VodakomBlue.Controllers
                     mobileServiceRepository.DeleteService(mobileService);
                     return Ok();
                 }
-                return NotFound();
+                return BadRequest("The given parameter is not valid!");
         }
 
         [HttpPut]
