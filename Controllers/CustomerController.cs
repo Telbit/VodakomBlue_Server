@@ -40,20 +40,17 @@ namespace VodakomBlue.Controllers
             return BadRequest("Customer is null");
         }
 
-        [HttpDelete("customerId")]
-        public IActionResult DeleteCustomer(int customerId)
+        [HttpDelete]
+        public IActionResult DeleteCustomer(Customer customer)
         {
-            if (customerId == 0)
+
+            if (customer == null)
             {
                 return BadRequest("Invalid Customer ID");
             }
-            Customer customer = customerService.GetCustomerAsync(customerId).Result;
-            if (customer != null)
-            {
-                customerService.DeleteCustomer(customer);
-                return Ok();
-            }
-            return NotFound("Customer not found with the provided Customer ID");
+            customerService.DeleteCustomer(customer);
+            return Ok();
+            
         }
 
         [HttpPost]

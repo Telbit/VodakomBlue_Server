@@ -41,20 +41,15 @@ namespace VodakomBlue.Controllers
             return Ok();
         }
 
-        [HttpDelete("id")]
-        public IActionResult DeleteEmployee(int employeeId)
+        [HttpDelete]
+        public IActionResult DeleteEmployee(Employee employee)
         {
-            if (employeeId == 0)
+            if (employee == null)
             {
                 return BadRequest("Invalid Employee ID");
             }
-            Employee employee = employeeService.GetEmployeeAsync(employeeId).Result;
-            if (employee != null)
-            {
-                employeeService.DeleteEmployee(employee);
-                return Ok();
-            }
-            return NotFound("Employee not found with the provided Employee ID");
+            employeeService.DeleteEmployee(employee);
+            return Ok();
         }
 
         [HttpPut]
