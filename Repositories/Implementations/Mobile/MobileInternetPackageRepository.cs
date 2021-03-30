@@ -24,10 +24,9 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public void DeletePackage(int packageId)
+        public void DeletePackage(MobileInternetPackage mobileInternetPackage)
         {
-            MobileInternetPackage mobileInternetPackage = GetPackageAsync(packageId).Result;
-            dbContext.Remove(mobileInternetPackage);
+            dbContext.MobileInternetPackages.Remove(mobileInternetPackage);
             dbContext.SaveChanges();
         }
 
