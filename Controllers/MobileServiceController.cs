@@ -42,15 +42,12 @@ namespace VodakomBlue.Controllers
 
         [HttpDelete("serviceId")]
         public ActionResult DeleteService(int serviceId) {
-            if (serviceId != 0) {
                 MobileService mobileService = mobileServiceRepository.GetServiceAsync(serviceId).Result;
                 if (mobileService != null) { 
                     mobileServiceRepository.DeleteService(mobileService);
                     return Ok();
                 }
                 return NotFound();
-            }
-            return BadRequest();
         }
 
         [HttpPut]

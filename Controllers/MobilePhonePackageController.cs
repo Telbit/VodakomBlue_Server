@@ -33,18 +33,15 @@ namespace VodakomBlue.Controllers
             return Ok(await mobilePhonePackageRepository.GetAllPackageAsync());
         }
 
-        [HttpDelete("packageId")]
-        public ActionResult DeletePackage(int packageId) {
-            if (packageId != 0) {
-                MobilePhonePackage mobilePhonePackage = mobilePhonePackageRepository.GetPackageAsync(packageId).Result;
+        [HttpDelete]
+        public ActionResult DeletePackage(MobilePhonePackage mobilePhonePackage)
+        {
                 if (mobilePhonePackage != null)
                 {
                     mobilePhonePackageRepository.DeletePackage(mobilePhonePackage);
                     return Ok();
                 }
                 return NotFound();
-            }
-            return BadRequest();
         }
 
         [HttpPost]
