@@ -26,7 +26,7 @@ namespace VodakomBlue.Repositories.Implementations
 
         public void DeletePackage(MobileInternetPackage mobileInternetPackage)
         {
-            dbContext.Remove(mobileInternetPackage);
+            dbContext.MobileInternetPackages.Remove(mobileInternetPackage);
             dbContext.SaveChanges();
         }
 

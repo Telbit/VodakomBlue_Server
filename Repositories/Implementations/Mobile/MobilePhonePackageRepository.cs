@@ -25,7 +25,7 @@ namespace VodakomBlue.Repositories.Implementations
 
         public void DeletePackage(MobilePhonePackage mobilePhonePackage)
         {
-            dbContext.Remove(mobilePhonePackage);
+            dbContext.MobilePhonePackages.Remove(mobilePhonePackage);
             dbContext.SaveChanges();
         }
 
