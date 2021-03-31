@@ -40,7 +40,7 @@ namespace VodakomBlue.Repositories.Implementations
             return await dbContext.HomePhones.FindAsync(homePhoneId);
         }
 
-        public void UpdateService(HomePhone homePhonePackage)
+        public void UpdatePackage(HomePhone homePhonePackage)
         {
             var serviceToUpdate = dbContext.HomePhones.Attach(homePhonePackage);
             serviceToUpdate.State = EntityState.Modified;
