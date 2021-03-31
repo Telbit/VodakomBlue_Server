@@ -13,5 +13,7 @@ namespace VodakomBlue.Repositories
         Task<IEnumerable<HomeInternet>> GetAllHomeInternetAsync();
         Task AddHomeInternetAsync(HomeInternet newHomeInternet);
         void DeleteHomeInternet(int homeInternetId);
+        void UpdateService(HomeInternet homeInternetPackage);
+
     }
 }
