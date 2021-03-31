@@ -12,8 +12,7 @@ namespace VodakomBlue.Repositories
         Task<HomeTV> GetHomeTvAsync(int homeTvId);
         Task<IEnumerable<HomeTV>> GetAllHomeTvASync();
         Task AddHomeTvAsync(HomeTV newHomeTv);
-        void DeleteHomeTv(int homeTvId);
-        void UpdateService(HomeTV homeTVPackage);
+        void UpdatePackage(HomeTV homeTVPackage);
         void DeleteHomeTv(HomeTV homeTv);
     }
 }

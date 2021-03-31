@@ -57,5 +57,16 @@ namespace VodakomBlue.Controllers.HomeControllers
             await homeInternetRepository.AddHomeInternetAsync(newHomeInternetPackage);
             return Ok();
         }
+
+        [HttpPut]
+        public IActionResult UpdatePackage(HomeInternet homeInternetPackage)
+        {
+            if (homeInternetPackage == null)
+            {
+                return BadRequest("The provided Internet package is null");
+            }
+            homeInternetRepository.UpdatePackage(homeInternetPackage);
+            return Ok();
+        }
     }
 }

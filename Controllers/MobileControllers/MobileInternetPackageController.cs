@@ -13,21 +13,21 @@ namespace VodakomBlue.Controllers
     [ApiController]
     public class MobileInternetPackageController : ControllerBase
     {
-        private readonly IMobileInternetPackageRepository mobileInternetPackage;
+        private readonly IMobileInternetPackageRepository mobileInternetPackageRepository;
 
         public MobileInternetPackageController(IMobileInternetPackageRepository _mobileInternetPackage) {
-            mobileInternetPackage = _mobileInternetPackage;
+            mobileInternetPackageRepository = _mobileInternetPackage;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetPackages() {
-            return Ok(await mobileInternetPackage.GetAllPackageAsync());
+            return Ok(await mobileInternetPackageRepository.GetAllPackageAsync());
         }
 
         [HttpGet("id")]
         public async Task<IActionResult> GetPackage(int packageId) {
             if (packageId > 0) { 
-            return Ok(await mobileInternetPackage.GetPackageAsync(packageId));
+            return Ok(await mobileInternetPackageRepository.GetPackageAsync(packageId));
             }
             return BadRequest("The given parameter is not valid!");
         }
@@ -35,7 +35,7 @@ namespace VodakomBlue.Controllers
         [HttpDelete]
         public ActionResult DeletePackage(MobileInternetPackage _mobileInternetPackage) {
                 if (_mobileInternetPackage != null) {
-                    mobileInternetPackage.DeletePackage(_mobileInternetPackage);
+                    mobileInternetPackageRepository.DeletePackage(_mobileInternetPackage);
                     return Ok();
                 }
                 return BadRequest("The given parameter is not valid!");
@@ -44,13 +44,24 @@ namespace VodakomBlue.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPackage(MobileInternetPackage _mobileInternetPackage) {
             if (_mobileInternetPackage != null) {  
-                await mobileInternetPackage.AddPackageAsync(_mobileInternetPackage);
+                await mobileInternetPackageRepository.AddPackageAsync(_mobileInternetPackage);
                 return Ok();
             }
             return BadRequest("The given parameter is not valid!");
 
             // ?TODO? check if package is Added
 
+        }
+
+        [HttpPut]
+        public IActionResult UpdatePackage(MobileInternetPackage mobileInternetPackage)
+        {
+            if (mobileInternetPackage != null)
+            {
+                mobileInternetPackageRepository.UpdatePackage(mobileInternetPackage);
+                return Ok();
+            }
+            return BadRequest("The provided Internet package is null");
         }
 
     }

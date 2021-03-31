@@ -57,5 +57,16 @@ namespace VodakomBlue.Controllers.HomeControllers
             await homePhoneRepository.AddHomePhoneAsync(homePhonePackage);
             return Ok();
         }
+
+        [HttpPut]
+        public IActionResult UpdatePackage(HomePhone homePhonePackage)
+        {
+            if (homePhonePackage == null)
+            {
+                return BadRequest("The provided Phone package is null");
+            }
+            homePhoneRepository.UpdatePackage(homePhonePackage);
+            return Ok();
+        }
     }
 }
