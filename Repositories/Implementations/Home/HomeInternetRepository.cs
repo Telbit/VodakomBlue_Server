@@ -23,10 +23,9 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public void DeleteHomeInternet(int homeInternetId)
+        public void DeleteHomeInternet(HomeInternet homeInternet)
         {
-            HomeInternet homeInternet = GetHomeInternetAsync(homeInternetId).Result;
-            dbContext.Remove(homeInternet);
+            dbContext.HomeInternets.Remove(homeInternet);
             dbContext.SaveChanges();
         }
 

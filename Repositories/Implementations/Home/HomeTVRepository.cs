@@ -23,10 +23,9 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public void DeleteHomeTv(int homeTvId)
+        public void DeleteHomeTv(HomeTV homeTv)
         {
-            HomeTV homeTV = GetHomeTvAsync(homeTvId).Result;
-            dbContext.Remove(homeTV);
+            dbContext.HomeTVs.Remove(homeTv);
             dbContext.SaveChanges();
         }
 
