@@ -57,5 +57,16 @@ namespace VodakomBlue.Controllers.HomeControllers
             await homeTvRepository.AddHomeTvAsync(homeTvPackage);
             return Ok();
         }
+
+        [HttpPut]
+        public IActionResult UpdatePackage(HomeTV homeTVpackage)
+        {
+            if (homeTVpackage == null)
+            {
+                return BadRequest("The provided Tv package is null");
+            }
+            homeTvRepository.UpdatePackage(homeTVpackage);
+            return Ok();
+        }
     }
 }
