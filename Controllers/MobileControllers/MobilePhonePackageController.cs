@@ -55,6 +55,17 @@ namespace VodakomBlue.Controllers
             // ?TODO? check if package is Added
         }
 
+        [HttpPut]
+        public IActionResult UpdatePackage(MobilePhonePackage mobilePhonePackage)
+        {
+            if (mobilePhonePackage != null)
+            {
+                mobilePhonePackageRepository.UpdatePackage(mobilePhonePackage);
+                return Ok();
+            }
+            return BadRequest("The provided Tv package is null");
+        }
+
 
     }
 }
