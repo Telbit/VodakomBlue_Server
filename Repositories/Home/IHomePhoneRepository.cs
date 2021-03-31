@@ -12,7 +12,7 @@ namespace VodakomBlue.Repositories
         Task<HomePhone> GetHomePhoneAsync(int homePhoneId);
         Task<IEnumerable<HomePhone>> GetAllHomePhoneAsync();
         Task AddHomePhoneAsync(HomePhone newHomePhone);
-        void UpdateService(HomePhone homePhonePackage);
+        void UpdatePackage(HomePhone homePhonePackage);
         void DeleteHomePhone(HomePhone homePhone);
     }
 }
