@@ -39,7 +39,7 @@ namespace VodakomBlue.Repositories.Implementations
             return await dbContext.MobilePhonePackages.FindAsync(packageId);
         }
 
-        public void UpdateService(MobilePhonePackage mobilePhonePackage)
+        public void UpdatePackage(MobilePhonePackage mobilePhonePackage)
         {
             var serviceToUpdate = dbContext.MobilePhonePackages.Attach(mobilePhonePackage);
             serviceToUpdate.State = EntityState.Modified;

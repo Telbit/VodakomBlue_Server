@@ -39,7 +39,7 @@ namespace VodakomBlue.Repositories.Implementations
             return await dbContext.HomeInternets.FindAsync(homeInternetId);
         }
 
-        public void UpdateService(HomeInternet homeInternetPackage)
+        public void UpdatePackage(HomeInternet homeInternetPackage)
         {
             var serviceToUpdate = dbContext.HomeInternets.Attach(homeInternetPackage);
             serviceToUpdate.State = EntityState.Modified;

@@ -34,7 +34,7 @@ namespace VodakomBlue.Repositories.Implementations
             return await dbContext.HomeTvServices.Where(service => service.Customer.Id == customerId).ToListAsync();
         }
 
-        public void UpdateService(HomeTvService homeService)
+        public void UpdatePackage(HomeTvService homeService)
         {
             var serviceToUpdate = dbContext.HomeTvServices.Attach(homeService);
             serviceToUpdate.State = EntityState.Modified;
