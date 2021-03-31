@@ -14,6 +14,6 @@ namespace VodakomBlue.Repositories
         Task AddHomeTvAsync(HomeTV newHomeTv);
         void DeleteHomeTv(int homeTvId);
         void UpdateService(HomeTV homeTVPackage);
-
+        void DeleteHomeTv(HomeTV homeTv);
     }
 }

@@ -13,6 +13,6 @@ namespace VodakomBlue.Repositories
         Task<IEnumerable<MobilePhonePackage>> GetAllPackageAsync();
         Task AddPackageAsync(MobilePhonePackage newPackage);
         void UpdateService(MobilePhonePackage mobilePhonePackage);
-        void DeletePackage(int packageId);
+        void DeletePackage(MobilePhonePackage mobilePhonePackage);
     }
 }

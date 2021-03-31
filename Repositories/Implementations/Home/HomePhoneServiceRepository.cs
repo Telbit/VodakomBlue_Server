@@ -23,11 +23,9 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public void DeleteService(int serviceId, int customerId)
+        public void DeleteService(HomePhoneService service)
         {
-            HomePhoneService homePhoneService = 
-                GetServicesAsync(customerId).Result.FirstOrDefault(service => service.Id == serviceId);
-            dbContext.Remove(homePhoneService);
+            dbContext.HomePhoneServices.Remove(service);
             dbContext.SaveChanges();
         }
 
@@ -38,7 +36,7 @@ namespace VodakomBlue.Repositories.Implementations
 
         public void UpdateService(HomePhoneService homeService)
         {
-            var homeServiceToUpdate = dbContext.Attach(homeService);
+            var homeServiceToUpdate = dbContext.HomePhoneServices.Attach(homeService);
             homeServiceToUpdate.State = EntityState.Modified;
             dbContext.SaveChanges();
         }

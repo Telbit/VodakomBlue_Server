@@ -23,9 +23,8 @@ namespace VodakomBlue.Repositories.Implementations
             await dbContext.SaveChangesAsync();
         }
 
-        public void DeleteHomePhone(int homePhoneId)
+        public void DeleteHomePhone(HomePhone homePhone)
         {
-            HomePhone homePhone = GetHomePhoneAsync(homePhoneId).Result;
             dbContext.HomePhones.Remove(homePhone);
             dbContext.SaveChanges();
         }

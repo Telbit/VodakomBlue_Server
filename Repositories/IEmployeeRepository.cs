@@ -11,6 +11,6 @@ namespace VodakomBlue.Repositories
         Task<Employee> GetEmployeeAsync(int employeeId);
         Task AddEmployeeAsync(Employee employee);
         void UpdateEmployee(Employee employee);
-        void DeleteEmployee(int employeeId);
+        void DeleteEmployee(Employee employee);
     }
 }

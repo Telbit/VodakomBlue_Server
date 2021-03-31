@@ -7,13 +7,13 @@ using VodakomBlue.Model.Mobile;
 
 namespace VodakomBlue.Repositories
 {
-    interface IMobileInternetPackageRepository
+    public interface IMobileInternetPackageRepository
     {
         Task<MobileInternetPackage> GetPackageAsync(int packageId);
         Task<IEnumerable<MobileInternetPackage>> GetAllPackageAsync();
         Task AddPackageAsync(MobileInternetPackage newPackage);
         void UpdateService(MobileInternetPackage mobileInternetPackage);
-        void DeletePackage(int packageId);
+        void DeletePackage(MobileInternetPackage mobileInternetPackage);
 
     }
 }
