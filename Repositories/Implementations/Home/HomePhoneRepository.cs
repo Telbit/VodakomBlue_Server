@@ -38,5 +38,12 @@ namespace VodakomBlue.Repositories.Implementations
         {
             return await dbContext.HomePhones.FindAsync(homePhoneId);
         }
+
+        public void UpdateService(HomePhone homePhonePackage)
+        {
+            var serviceToUpdate = dbContext.HomePhones.Attach(homePhonePackage);
+            serviceToUpdate.State = EntityState.Modified;
+            dbContext.SaveChanges();
+        }
     }
 }
