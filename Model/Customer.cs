@@ -12,8 +12,6 @@ namespace VodakomBlue.Model
     public class Customer : User
     {
         [Required(ErrorMessage = "Adresses is required")]
-        [ForeignKey("Address")]
-        public int AddressId { get; set; }
         public List<Address> Adresses { get; set; }
         public List<Contract> Contracts { get; set; }
         public List<MobileService> MobileServices { get; set; }
