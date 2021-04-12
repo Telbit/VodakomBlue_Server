@@ -18,10 +18,11 @@ namespace VodakomBlue.Repositories.Implementations
             dbContext = context;
         }
 
-        public async Task AddAddressAsync(Address newAddress)
+        public async Task<int> AddAddressAsync(Address newAddress)
         {
             await dbContext.Addresses.AddAsync(newAddress);
             await dbContext.SaveChangesAsync();
+            return newAddress.Id;
         }
         
         public void DeleteAddress(Address address)
