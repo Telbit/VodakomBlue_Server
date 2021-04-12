@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,7 +30,13 @@ namespace VodakomBlue.Model
         [Required(ErrorMessage = "IsHomeAddress is required")]
         public bool IsHomeAddress { get; set; }
 
-        [Required(ErrorMessage = "Customer is required")]
+        /*[ForeignKey("Employee")]
+        public int EmployeeId { get; set; }
+        public int CustomerId { get; set; }
+        [ForeignKey("Customer")]*/
         public Customer Customer { get; set; }
+        public Employee Employee { get; set; }
+
+        
     }
 }
