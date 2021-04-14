@@ -12,7 +12,6 @@ namespace VodakomBlue.Model
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(4)]
         [Required(ErrorMessage = "Zip is required")]
         public int ZipCode { get; set; }
 
