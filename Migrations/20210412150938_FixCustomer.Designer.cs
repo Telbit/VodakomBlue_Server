@@ -10,8 +10,8 @@ using VodakomBlue.Model;
 namespace VodakomBlue.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210317144626_Init")]
-    partial class Init
+    [Migration("20210412150938_FixCustomer")]
+    partial class FixCustomer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace VodakomBlue.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsBillingAddress")
@@ -137,7 +137,7 @@ namespace VodakomBlue.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AddressId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("BirthDate")
@@ -177,7 +177,8 @@ namespace VodakomBlue.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("AddressId")
+                        .IsUnique();
 
                     b.ToTable("Employees");
                 });
@@ -466,9 +467,7 @@ namespace VodakomBlue.Migrations
                 {
                     b.HasOne("VodakomBlue.Model.Customer", "Customer")
                         .WithMany("Adresses")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
                 });
@@ -493,8 +492,10 @@ namespace VodakomBlue.Migrations
             modelBuilder.Entity("VodakomBlue.Model.Employee", b =>
                 {
                     b.HasOne("VodakomBlue.Model.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
+                        .WithOne("Employee")
+                        .HasForeignKey("VodakomBlue.Model.Employee", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
                 });
@@ -621,6 +622,11 @@ namespace VodakomBlue.Migrations
                     b.Navigation("MobileInternetPackage");
 
                     b.Navigation("MobilePhonePackage");
+                });
+
+            modelBuilder.Entity("VodakomBlue.Model.Address", b =>
+                {
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("VodakomBlue.Model.Contract", b =>

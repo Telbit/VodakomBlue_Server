@@ -38,8 +38,8 @@ namespace VodakomBlue.Controllers
             {
                 return BadRequest("The provided Address is null");
             }
-            await addressService.AddAddressAsync(newAddress);
-            return Ok();
+            int newAddressId = await addressService.AddAddressAsync(newAddress);
+            return Ok(newAddressId);
         }
 
         [HttpPut]
