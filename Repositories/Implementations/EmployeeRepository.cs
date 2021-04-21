@@ -31,6 +31,11 @@ namespace VodakomBlue.Repositories.Implementations
             return await dbContext.Employees.FindAsync(employeeId);
         }
 
+        public async Task<IEnumerable<Employee>> GetEmployeesAsync()
+        {
+            return await dbContext.Employees.ToListAsync();
+        }
+
         public void UpdateEmployee(Employee employee)
         {
             var employeeToUpdate = dbContext.Employees.Attach(employee);
