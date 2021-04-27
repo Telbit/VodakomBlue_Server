@@ -19,6 +19,12 @@ namespace VodakomBlue.Controllers
             employeeService = service;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetEmployees()
+        {
+            return Ok(await employeeService.GetEmployeesAsync());
+        }
+
         [HttpGet("id")]
         public async Task<IActionResult> GetEmployee(int employeeId)
         {
