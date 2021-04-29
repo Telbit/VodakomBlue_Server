@@ -11,12 +11,12 @@ namespace VodakomBlue.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AddressController : ControllerBase
+    public class AddressesController : ControllerBase
     {
 
         private readonly IAddressRepository addressService;
 
-        public AddressController(IAddressRepository service)
+        public AddressesController(IAddressRepository service)
         {
             addressService = service;
         }

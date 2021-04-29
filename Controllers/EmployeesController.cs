@@ -8,13 +8,13 @@ using VodakomBlue.Model;
 
 namespace VodakomBlue.Controllers
 {
-    [Route("api/employees")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class EmployeesController : ControllerBase
     {
         private readonly IEmployeeRepository employeeService;
 
-        public EmployeeController(IEmployeeRepository service)
+        public EmployeesController(IEmployeeRepository service)
         {
             employeeService = service;
         }
