@@ -29,11 +29,7 @@ namespace VodakomBlue.Model
         [Required(ErrorMessage = "IsHomeAddress is required")]
         public bool IsHomeAddress { get; set; }
 
-        /*[ForeignKey("Employee")]
-        public int EmployeeId { get; set; }
-        public int CustomerId { get; set; }
-        [ForeignKey("Customer")]*/
-        public Customer Customer { get; set; }
+        public List<Customer> Customers { get; set; }
         public Employee Employee { get; set; }
 
         

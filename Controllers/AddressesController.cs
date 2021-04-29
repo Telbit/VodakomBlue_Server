@@ -21,7 +21,7 @@ namespace VodakomBlue.Controllers
             addressService = service;
         }
 
-        [HttpGet("customerId")]
+        [HttpGet("{customerId}")]
         public async Task<IActionResult> GetAddresses(int customerId)
         {
             if (customerId == 0)
